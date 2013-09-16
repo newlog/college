@@ -1,0 +1,16 @@
+//////////////////////////
+//	BABEL09 Prova3.bab	//
+//////////////////////////
+
+var vector [0 .. 4] de logic i;
+var logic w;
+var logic x;
+programa
+	llegir(w);
+	x = CERT;
+	w =  w OR w OR x;
+	escriure("\n",w);			//50
+	
+
+	//escriure("Fi programa");
+fiprog

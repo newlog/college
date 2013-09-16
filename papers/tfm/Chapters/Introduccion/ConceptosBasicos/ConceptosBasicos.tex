@@ -1,0 +1,141 @@
+\subsection{Conceptos Básicos}
+\label{sec:heap_basic_concepts}
+
+Antes de entrar de lleno con la definición de las estructuras de datos relevantes para la gestión de memoria dinámica se deben asentar algunos conceptos básicos para que el lector se ubique.\bigskip
+
+Cuando se habla de regiones de memoria, se debe tener claro que dichas regiones normalmente no se comparten entre procesos. Por ejemplo, si se están ejecutando dos procesos independientes, cada uno tendrá su propio \textit{stack} o \textit{heap}. Sin embargo, si se revisaran las direcciones de memoria donde se ubican las variables de dichos procesos, éstas podrían ser iguales. Esto se debe a que cuando el programador obtiene la dirección en memoria de una variable, dicha dirección es lo que se conoce como \textit{dirección virtual}. La dirección obtenida no es la dirección física real donde se ubica la variable dentro de la memoria RAM sino que el núcleo del sistema operativo se encarga de realizar la traducción entre direcciones virtuales y direcciones reales a partir de lo que se conoce como \textit{tablas de páginas}.\cite{UM}\bigskip
+
+Gracias a este procedimiento, los procesos siempre se acostumbran a cargar en las mismas direcciones virtuales de memoria. Aunque, tal y como se verá en los próximos apartados, hace un tiempo, debido a medidas de seguridad, se añadió cierto nivel de aleatoriedad en la dirección de carga de los diferentes segmentos de memoria de un proceso, tales como el \textit{stack} o el \textit{heap}. Esta técnica se conoce como ASLR y se lleva a cabo para que un atacante remoto no pueda conocer de antemano en qué posición exacta de memoria se cargan ciertos datos. \bigskip
+
+En la Figura \ref{fig:process_memory_layout} se puede ver como se ubicarían los datos en memoria una vez se ejecutara un binario. Aclarar que cuando se habla de binario o programa, normalmente se hace referencia al código fuente o al ejecutable ELF, sin embargo, cuando se habla de proceso se hace referencia al conjunto de datos que se cargan en memoria cuando se ejecuta un binario.\\
+Lo que se muestra en la Figura \ref{fig:process_memory_layout} es la estructura en memoria de un proceso en el sistema operativo, no la estructura de un ejecutable ELF\footnote{Para más información sobre ejecutables ELF se puede consultar:\\ \url{http://en.wikipedia.org/wiki/Executable_and_Linkable_Format}\\ \url{http://www.skyfree.org/linux/references/ELF_Format.pdf}}. \bigskip
+
+\begin{figure}[!htbp]  
+    \centering
+    \includegraphics[scale=0.6]{./Chapters/Introduccion/ConceptosBasicos/img/process_memory_layout.eps}   
+    \caption{Mapa de memoria de un proceso}
+    \label{fig:process_memory_layout}
+\end{figure}
+
+Lo primero que se puede apreciar es que la dirección de carga del proceso no es 0x00000000, sino 0x08000000. Esta dirección puede variar entre sistemas operativos y arquitecturas, pero la idea principal es que dicha dirección la especifica el enlazador o \textit{linker} en el proceso de compilación del binario\footnote{En Linux, normalmente la dirección de carga para arquitecturas de 32 bits acostumbra a ser 0x8048000, para arquitecturas de 64 bits acostumbra a ser 0x400000.}. Y si bien es cierto que la dirección de carga se puede especificar manualmente, la mayoría de procesos se cargan en direcciones cercanas a 0x08000000. \cite{LL} 
+
+Esta decisión no es del todo arbitraria sino que tiene un propósito. El objetivo de cargar un proceso a partir de dicha dirección es evitar la sobreescritura de datos si se produce lo que se conoce como \textit{NULL pointer dereference}. Un NULL pointer dereference se da cuando un programador comete el error de escribir en la dirección de memoria 0x00000000 pensando que está escribiendo en una dirección válida. Esto puede ocurrir cuando, por ejemplo, se llama a la función \textit{malloc()} y no se comprueba que su valor de retorno sea válido.\\
+Así pues, por conveniencia, los procesos se cargan en memoria en direcciones cercanas a la comentada, de modo que dejen un margen de unos 128MB de memoria para evitar que estos errores del programador desemboquen en situaciones peores.\cite{WVCC} \bigskip
+
+Por otro lado, a partir de la dirección de memoria 0xc0000000 se ubican los datos utilizados por el sistema operativo, por tanto, este es el límite superior del proceso\cite{UTLVMM}. \\
+De la dirección 0xc0000000 hacia abajo, se encuentran los argumentos y las variables de entorno que ha heredado el proceso al ser ejecutado desde la línea de comandos\cite{AOAPIM}. \bigskip
+
+\pagebreak
+
+A continuación se detalla qué datos se almacenan en cada una de los siguientes segmentos\cite{GHH-Pages129-130}:
+\begin{itemize}
+\item \textbf{stack:}\\ En el \textit{stack} o pila se almacenan los datos relativos a las llamadas a funciones. Sus parámetros, variables locales, dirección de retorno, etc. Tal y como indica la flecha del diagrama, la pila crece de las direcciones altas de memoria hacia las direcciones bajas. Mucha más información sobre la pila se puede encontrar en la investigación mencionada en el apartado \ref{sec:related_work}.
+\item \textbf{mmap:}\\ En el segmento mmap se almacenan datos varios tales como librerías compartidas o aquellos datos que se almacenen con la llamada al sistema \textit{mmap()}.
+\item \textbf{heap:}\\ El segmento que define el \textit{heap} es en el que se almacenan variables dinámicas y crece de direcciones de memoria menores a mayores. Funciones tales como \textit{malloc()}, \textit{realloc()}, \textit{free()}, etc son las que gestionan los contenidos del \textit{heap}. La gestión del \textit{heap} es compleja y, por esta razón, en los siguientes apartados se detallará su funcionamiento.
+\item \textbf{bss:}\\ El segmento bss\footnote{BSS es el acrónimo de Below Stack Section.} sirve para almacenar variables globales o estáticas no inicializadas del estilo |int x;|
+\item \textbf{data:}\\ El segmento data se utiliza para almacenar variables globales o estáticas que se han inicializado del estilo |int x = 0;|. 
+\item \textbf{text:}\\ En el segmento text básicamente se almacenan las instrucciones que forman el binario. Este segmento es de sólo lectura y si se intenta escribir en él se produciría un error de violación de acceso o \textit{segmentation fault}.
+\end{itemize}
+
+El código \ref{code:memLayout} permite corroborar lo que se ha afirmado hasta el momento. En dicho código se crean diferentes variables; estáticas, globales, locales, inicializadas, etc de modo que posteriormente se imprima la dirección virtual donde se ubican dichas variables. De este modo se puede tener una idea de la estructura del proceso en memoria. \bigskip
+
+\pagebreak
+
+\lstset{language=C, caption=Variables de un proceso en memoria, label=code:memLayout}
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Variable global inicializada. [data] */
+int init_global_var = 10;
+/* Variable global no inicializada. [bss] */
+int global_var;
+/* Variable global estatica inicializada. [data] */      
+static int init_static_var = 20;
+/* Variable global estatica no inicializada. [bss] */
+static int static_var;
+
+int main(int argc, char **argv, char **envp)
+{
+    /* Variable local estatica inicializada. [data] */
+    static int init_static_local_var = 30;
+    /* Variable local estatica no inicializada. [bss] */
+    static int static_local_var;
+    /* Variable local inicializada. [stack] */
+    int init_local_var = 40;
+    /* Variable local no inicializada. [stack] */
+    int local_var;
+    /* Variable dinamica. [heap] */
+    void * dynamic_var = malloc (100);
+
+    printf("Direccion de la funcion main [.text]: %p\n", 				&main);
+    printf("Distancia: %u bytes\n", (void *)&init_global_var - (void*)&main);
+    printf("Direccion de la variable global inicializada [.data]: %p\n", 		&init_global_var);
+    printf("Distancia: %u bytes\n", (void *)&init_static_var - (void *)&init_global_var);
+    printf("Direccion de la variable global estatica inicializada [.data]: %p\n", 	&init_static_var);
+    printf("Distancia: %u bytes\n", (void *)&init_static_local_var - (void *)&init_static_var);
+    printf("Direccion de la variable local estatica inicializada [.data]: %p\n", 	&init_static_local_var);
+    printf("Distancia: %u bytes\n", (void *)&static_var - (void *)&init_static_local_var);
+    printf("Direccion de la variable global estatica no inicializada [.bss]: %p\n", 	&static_var);
+    printf("Distancia: %u bytes\n", (void *)&static_local_var - (void *)&static_var);
+    printf("Direccion de la variable local estatica no inicializada[.bss]: %p\n", 	&static_local_var);
+    printf("Distancia: %u bytes\n", (void *)&global_var - (void *)&static_local_var);
+    printf("Direccion de la variable global no incializada [.bss]: %p\n", 		&global_var);
+    printf("Distancia: %u bytes\n", (void *)&dynamic_var - (void *)&global_var);
+    printf("Direccion de la variable dinamica [heap]: %p\n", 				dynamic_var);
+    printf("Distancia: %u bytes\n", (void *)&local_var - (void *)&dynamic_var);
+    printf("Direccion de la variable local no incializada [stack]: %p\n", 		&local_var);
+    printf("Distancia: %u bytes\n", (void *)&init_local_var - (void *)&local_var);
+    printf("Direccion de la variable local inicializada [stack]: %p\n", 		&init_local_var);
+    printf("Distancia: %u bytes\n", (void *)&envp[0] - (void *)&init_local_var);
+    printf("Direccions de la variable de entorno [cerca de 0xc0000000]: %p\n", 		&envp[0]);
+
+    exit(0);
+}
+\end{lstlisting}
+
+Una vez ejecutado se obtiene lo siguiente: \bigskip
+
+\begin{listing}[style=consola, caption=Variables de un proceso en memoria, label=out:memLayout]	
+newlog@ubuntu:~/Documents/TFM/Heap_Intro$ gcc mem_layout.c 
+newlog@ubuntu:~/Documents/TFM/Heap_Intro$ ./a.out 
+Direccion de la funcion main [.text]: 0x8048424
+Distancia: 7160 bytes
+Direccion de la variable global inicializada [.data]: 0x804a01c
+Distancia: 4 bytes
+Direccion de la variable global estatica inicializada [.data]: 0x804a020
+Distancia: 4 bytes
+Direccion de la variable local estatica inicializada [.data]: 0x804a024
+Distancia: 12 bytes
+Direccion de la variable global estatica no inicializada [.bss]: 0x804a030
+Distancia: 4 bytes
+Direccion de la variable local estatica no inicializada[.bss]: 0x804a034
+Distancia: 4 bytes
+Direccion de la variable global no incializada [.bss]: 0x804a038
+Distancia: 3086571420 bytes
+Direccion de la variable dinamica [heap]: 0x8987008
+Distancia: 4 bytes
+Direccion de la variable local no incializada [stack]: 0xbffdf7d8
+Distancia: 4 bytes
+Direccion de la variable local inicializada [stack]: 0xbffdf7dc
+Distancia: 192 bytes
+Direccions de la variable de entorno [cerca de 0xc0000000]: 0xbffdf89c
+\end{listing}
+
+Si uno se fija en las direcciones de las variables y las contrasta con la Figura \ref{fig:process_memory_layout} podrá intuir que todo parece correcto, sin embargo, debido a que no se conoce donde empieza cada segmento no se puede asegurar sólo con lo que se ha visto hasta el momento. Es en este momento en el que entra en escena la aplicación \textit{objdump}. Esta utilidad tiene muchísimas aplicaciones y una de ellas es la que se ilustra a continuación: \bigskip
+
+\begin{listing}[style=consola, caption=Salida de objdump -x, label=out:objdump-x]	
+newlog@ubuntu:~/Documents/TFM/Heap_Intro$ objdump -x a.out | grep -E 'main|init_global_var|init_static_var|init_static_local_var|static_var|static_local_var|global_var|dynamic_var'
+0804a020 l     O .data	00000004              init_static_var
+0804a030 l     O .bss	00000004              static_var
+0804a024 l     O .data	00000004              init_static_local_var.2210
+0804a034 l     O .bss	00000004              static_local_var.2211
+0804a01c g     O .data	00000004              init_global_var
+00000000       F *UND*	00000000              __libc_start_main@@GLIBC_2.0
+0804a038 g     O .bss	00000004              global_var
+08048424 g     F .text	0000022d              main
+\end{listing}
+
+Con |objdump -x| se obtiene la información sobre la cabecera del binario ELF generado con gcc. Tal y como se puede ver en la salida de objdump las variables se almacenan en los segmentos de memoria que se han comentado. Por otro lado, se puede ver que las variables que se almacenan en el heap y en el stack no aparecen en la salida de objdump. Esto se debe a que objdump trabaja sobre el binario y no sobre el proceso cargado en memoria. Por esta razón, para dichas variables sólo nos podemos guiar por el Código \ref{code:memLayout}. \bigskip
+
+Por último, comentar que estos datos pueden variar un poco entre sistema operativo debido a que, en este caso, sólo se ha explicado dicha estructura teniendo en mente el sistema operativo Linux sobre una arquitectura de 32 bits.

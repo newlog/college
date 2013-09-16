@@ -1,0 +1,19 @@
+learning-rate = 0.0001
+
+topology = 5,5,1
+
+learning-type = supervised
+
+phase = test
+
+algorithm = backpropagation
+
+iterations = 5
+
+dataset=  ./dataset/good_sinus_test.txt
+
+weights= ./weights/weights.txt
+
+graphics = on
+
+sigmoid = output

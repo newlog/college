@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Server SYSTEM "configura.dtd">
+<Server>
+    <!-- ***** Dades de la configuració de l'entorn Chess Online *****	-->
+    <Configuracio>
+        <!-- ***** Port on es connecten per les peticios      *****          -->
+        <Port Base="9001" />
+        <!-- ***** Nombre màxim de Partides que es permet     *****	-->
+        <Maxim Partides="200" />
+        <!-- ***** Nombre màxim d'usuaris connectats per partida i al chat ***** -->
+        <Ports Partida="20" Chat="100" />
+        <!-- ***** Jugadors registrats en el sistema              *****    -->
+        <Usuaris Registrats="4" />
+    </Configuracio>
+    <!-- ***** Llista de jugadors registrats en el sistema *****        -->
+    <Jugadors>
+        <Jugador>
+            <Nom> Blanques </Nom>
+            <Cognom> Blanques </Cognom>
+            <Login> blanques </Login>
+            <Password> blanques </Password>
+            <Mail> blanques@domain </Mail>
+            <Punts> 5 </Punts>
+            <Partides>
+                <Guanyades> 9 </Guanyades>
+                <Perdudes> 0 </Perdudes>
+                <Abandonades> 20 </Abandonades>
+                <Taules> 0 </Taules>
+            </Partides>
+            <Connexio>
+                <Intents Restants="3" />
+                <Ultima Data="22/12/2011" />
+            </Connexio>
+        </Jugador>
+        <Jugador>
+            <Nom> name </Nom>
+            <Cognom> surname </Cognom>
+            <Login> login </Login>
+            <Password> paswd </Password>
+            <Mail> login@domain </Mail>
+            <Punts> 10 </Punts>
+            <Partides>
+                <Guanyades> 2 </Guanyades>
+                <Perdudes> 0 </Perdudes>
+                <Abandonades> 0 </Abandonades>
+                <Taules> 0 </Taules>
+            </Partides>
+            <Connexio>
+                <Intents Restants="3" />
+                <Ultima Data="19/11/2010" />
+            </Connexio>
+        </Jugador>
+        <Jugador>
+            <Nom> Negres </Nom>
+            <Cognom> Negres </Cognom>
+            <Login> negres </Login>
+            <Password> negres </Password>
+            <Mail> negres@domain </Mail>
+            <Punts> 82 </Punts>
+            <Partides>
+                <Guanyades> 20 </Guanyades>
+                <Perdudes> 0 </Perdudes>
+                <Abandonades> 9 </Abandonades>
+                <Taules> 0 </Taules>
+            </Partides>
+            <Connexio>
+                <Intents Restants="3" />
+                <Ultima Data="22/12/2011" />
+            </Connexio>
+        </Jugador>
+        <Jugador>
+            <Nom> name </Nom>
+            <Cognom> surname </Cognom>
+            <Login> login </Login>
+            <Password> paswd </Password>
+            <Mail> name@domain </Mail>
+            <Punts> -4 </Punts>
+            <Partides>
+                <Guanyades> 0 </Guanyades>
+                <Perdudes> 0 </Perdudes>
+                <Abandonades> 2 </Abandonades>
+                <Taules> 0 </Taules>
+            </Partides>
+            <Connexio>
+                <Intents Restants="3" />
+                <Ultima Data="19/11/2010" />
+            </Connexio>
+        </Jugador>
+    </Jugadors>
+</Server>
+

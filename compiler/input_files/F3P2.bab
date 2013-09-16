@@ -1,0 +1,131 @@
+//////////////////////////
+//	BABEL09 F3P2.bab	//
+//////////////////////////
+
+
+Const CTE_S1 = 1;
+Const CTE_S2 = 5 - 2 - cte_s1;
+Const CTE_S3 =  20 - cte_s0;					//cte_s0 no declarada
+const CTE_L1 = cert;
+const CTE_L2 = fals or cte_l1;
+const CTE_L3 = fals or cte_s1;				//mezcla de tipos en el operador or
+const CTE_C1 = "Hola ";
+const CTE_C3 = "Hola " + "que tal!";	//operador + no permitido en cadenas
+const CTE_C2 = CTE_C1 & "mundo ...";
+const MIN1 = 3;
+const MIN2 = 1;
+const MAX1 = 5;
+const MAX2 = 3;
+const CTE_S2 = 10;										// cte_s2 ya declarada
+var sencer i;
+var sencer k;
+var logic j;
+var  vector [MIN1 .. MAX1+1] de sencer X;
+var  vector [10 .. MAX1+1] de sencer X1; 					// limite inferior > limite superior
+var  vector [cte_s2 .. MIN1] de sencer Z;
+var  vector [cte_s2 .. MIN11] de sencer Z1;				//min11 no declarado
+var vector [MIN2 .. MAX2] de sencer Y;
+var vector [CTE_L1 .. CTE_L1 + 20] de sencer Y1;  //tipos lógicos en índice de vector
+var vector [3 .. 5] de sencer W;
+var cadena(10) C1;
+var cadena(10+i) C2;								// expresión no estática
+var logic k;												// k ya declarada
+var sencer cte_s1;									// cte_s1 ya declarada
+
+funcio g(ref vector[3 .. 5] de sencer T, val cadena(10) C):logic;
+Const CTE_S4 =  20 - i;								//	expresión no estática
+inici
+	i = MIN1; 
+	t[k+1]=2;
+	si j == cert  llavors 	llegir(T[i],CTE_S1); fisi;	//se lee una constante
+	CTE_S2 = CTE_S1 + i;							// asignación a una constante
+	T = 2;														// asignación a una variable vector
+	Si i > C llavors i=1;sino i=2;fisi;	// C es una cadena
+	Si k > j llavors j=fals;sino j=cert; fisi; 	// mezcla de tipos en el operador >
+	
+	retornar not j;
+fifunc;
+
+funcio g1(ref vector[3 .. 5] de sencer T, val cadena(10) C, val sencer T):logic;		//parametro doblemente declarado
+inici
+	retornar fals;
+fifunc;
+
+funcio g2(val sencer x1, val logic x2, val logic x3):logic;		
+const i=100;				
+const x1=100;					// x1 ya declarada
+var sencer x3;				// x3 ya declarada
+var sencer g;					
+var sencer i;					// i ya declarada
+
+inici
+	retornar fals;
+fifunc;
+
+funcio g(val sencer x1, val logic x2, val logic x3):logic;		// g ya declarada
+inici
+	retornar fals;
+fifunc;
+
+funcio k(val sencer x1, val logic x2, val logic x3):logic;		// k ya declarada
+inici
+	retornar fals;
+fifunc;
+
+funcio f(ref vector[Min1 .. max1] de sencer T, val logic j): sencer;
+	const CTE_S1 = CTE_S2 * 2;	
+	var logic i;
+	var sencer k;
+	var sencer n;
+	var cadena(10) c;
+	var cadena(12) c1;
+inici
+	i = i AND fals or (not j);	
+	T[cte_s1]=-1-cte_s2;
+	n = 5;
+	k = 0; 
+	f = 10;																// asignacion a una funcion
+	T = W + T;														// suma y asignacion de vectores
+	T[MIN1-2] = 1;												// indice fuera de rango
+	T[i] = 1;															// indice no sencer
+	C &= 1;																// 1 no es cadena
+	n = cert and i;												// asignacion no correcta
+	C = C1;																// asignacion no correcta
+	n = k / ( Max1 - 5);									// division por cero
+	k[1] = 1;															// k no es vector
+	XX[1] = 1;														// XX no declarada
+	i = ff(1);														// ff no declarada
+	cicle
+		si k < 10 llavors
+			k = k + 1;
+			ll = ll +1;												// ll no declarada
+			i=g(T,c);
+		sino
+			i=g(T,"0123456789");
+			surtcicle;
+		fisi;
+	ficicle;
+	surtcicle;														// sutcicle fuera de cicle
+	escriure("hola "& trim( cte_c2), k, i or fals,t[max2+n]);
+	per k=1 a n  fer
+			llegir(n,i,T[k]);	
+		fiper;
+		retornar cert; 							// retorna lógico
+fifunc;
+
+funcio f1(val cadena(10) x1, ref logic x2, val logic x3):logic;		
+inici
+	retornar fals or mm;					// mm no declarada
+fifunc;
+
+programa
+	
+	i -= f(W);									// numero de parametros mal
+	surtcicle;									// surtcicle fuera de cicle
+	retornar i;									// retornar fuera de funcion
+	i = f(Y,cert and j);				// no puede pasarse a Y
+	j = f1("0123456789",j and cert, cert or j);			// segundo parametro mal 	
+	j = f1(C1,j,i);							// tercer parametro mal												
+			
+fiprog
+

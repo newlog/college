@@ -1,0 +1,66 @@
+//////////////////////////
+//	BABEL09 F3P1.bab	//
+//////////////////////////
+Const CTE_S1 = 1;
+Const CTE_S2 = 5 - 2 - cte_s1;
+const CTE_L1 = cert;
+const CTE_L2 = fals or cte_l1;
+const CTE_C1 = "Hola ";
+const CTE_C2 = CTE_C1 & "mundo ...";
+const MIN1 = 3;
+const MIN2 = 1;
+const MAX1 = 5;
+const MAX2 = 3;
+var sencer i;
+var sencer k;
+var logic j;
+var  vector [MIN1 .. MAX1+1] de sencer X;
+var  vector [cte_s2 .. MIN1] de sencer Z;
+var vector [MIN2 .. MAX2] de sencer Y;
+var vector [3 .. 5] de sencer W;
+var cadena(10) C1;
+
+funcio g(ref vector[3 .. 5] de sencer T, val cadena(10) C):logic;
+inici
+	i = MIN1; 
+	t[k+1]=2;
+	si j == cert  llavors 	llegir(T[i]); fisi;
+	retornar not j;
+fifunc;
+
+funcio f(ref vector[Min1 .. max1] de sencer T, val logic j): sencer;
+	const CTE_S1 = CTE_S2 * 2;	
+	var logic i;
+	var sencer k;
+	var sencer n;
+	var cadena(10) c;
+inici
+	i = i AND fals or (not j);	
+	T[cte_s1]=-1-cte_s2;
+	n = 5;
+	k = 0; 
+	cicle
+		si k < 10 llavors
+			k = k + 1;
+			i=g(T,c);
+		sino
+			i=g(T,"0123456789");
+			surtcicle;
+		fisi;
+	ficicle;
+	escriure("hola "& trim( cte_c2), k, i or fals,t[max2+n]);
+	per k=1 a n  fer
+			llegir(n,i,T[k]);	
+		fiper;
+		retornar k + 1; 
+fifunc;
+
+
+programa
+	
+	i -= f(W,not j);
+	i += g(W,trim(C1));
+	c1 &= "0123456789";
+	
+	
+fiprog

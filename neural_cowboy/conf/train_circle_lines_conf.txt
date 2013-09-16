@@ -1,0 +1,18 @@
+learning-rate = 0.2
+
+topology = 100,25,25,2
+
+learning-type = supervised
+
+phase = train
+
+algorithm = backpropagation
+
+iterations = 20
+
+dataset=  ./src/dataset/pattern_recognition/good_lines_circles_10x10.txt
+
+graphics = on
+
+sigmoid = all
+

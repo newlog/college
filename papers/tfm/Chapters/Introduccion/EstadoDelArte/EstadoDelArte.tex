@@ -1,0 +1,16 @@
+\subsection{Estado del arte}
+
+En el mundo de la explotación de software, el trayecto dio comienzo con uno de los primeros gusanos informáticos llamado \textit{morris worm} en el 1988\footnote{Información sobre el gusano Morris: \\ \url{http://en.wikipedia.org/wiki/Morris_worm}}. Esta sería la primera muestra de la importancia que tendría en un futuro el hecho de poder realizar una inyección de datos en memoria y, consiguientemente, corromper los datos almacenados. \bigskip
+
+Sin embargo, no fue hasta 1999 cuando Matt Conover realizó el primer trabajado divulgativo sobre cómo desbordar variables ubicadas en la región de memoria llamada \textit{heap} \cite{WOHO}. Y en el 2000 fue cuando salió a la luz el primer \textit{exploit} que aprovechaba un desbordamiento de búfer en el \textit{heap}\cite{JCMPV}, y la publicación de dicho \textit{exploit} vino de la mano del ilustre \textit{Solar Designer}, conocido por esta y muchas otras contribuciones que han hecho que, hoy en día, la seguridad de nuestros sistemas sea significativamente mejor que en el pasado. \bigskip
+
+En la legendaria \textit{e-zine} \textit{Phrack}, se escribieron dos artículos en el mismo número en el que se explicaban nuevas técnicas aplicables al desbordamiento de búfers en el \textit{heap}. El primer artículo se llamó \textit{Vudo malloc tricks} escrito por \textit{MaXX}\cite{VAOSBTEMP} y explicaba el funcionamiento del algoritmo encargado de realizar la gestión de memoria dinámica, por aquel momento \textit{Doug Lea's malloc()} y también explicaba algunos métodos para conseguir la ejecución de código arbitrario a partir del desbordamiento de búfers en el \textit{heap}. El segundo artículo fue anónimo y se tituló \textit{Once upon a free()}\cite{OUAF} y se focalizó en explicar la implementación del \textit{System V malloc}.
+
+Fue en 2003 cuando \textit{jp} escribió, también en la \textit{Phrack}, el artículo titulado \textit{Advanced Doug Lea's malloc exploits}\cite{ADLME} donde se presentaban nuevas técnicas de explotación y se sentaban las bases para lo que estaba por venir.\bigskip
+
+Todas estas técnicas estuvieron vigentes hasta que en 2004 la librería donde estaba el código encargado de implementar la gestión de la memoria dinámica se mejoró haciendo que todas las técnicas mostradas hasta el momento quedaran obsoletas.
+
+Fue por esta razón por la cual \textit{Phantasmal Phantasmagoria} escribió el artículo titulado \textit{The Malloc Maleficarum}\cite{MM}, donde se recogían un conjunto de técnicas teóricas por las cuales sería posible evadir las docenas de mejoras, restricciones y comprobaciones que se añadieron al algoritmo. Y lo escribió simplemente por el reto interno que tiene cada \textit{hacker} de superar los límites impuestos cuando alguien le asegura que algo es imposible.\\
+Este texto fue una revolución en cuanto a plantear las cosas de un modo diferente y, de nuevo, cimentar los conocimientos sobre los que se basarían nuevos textos. 
+
+Finalmente fue \textit{blackngel} con su \textit{Malloc Des-Maleficarum}\cite{MDM} en 2009 y con \textit{The House of Lore: Reloaded}\cite{THOLR}, quien dio un cariz empírico a cada una de las técnicas explicadas por \textit{Phantasmal Phantasmagoria}.

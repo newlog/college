@@ -1,0 +1,20 @@
+<!ELEMENT Opcions (Servidor,Preferencies)>
+<!ELEMENT Servidor (Direccio,Port)>
+<!ELEMENT Direccio EMPTY>
+<!ATTLIST Direccio IP CDATA #REQUIRED>
+<!ELEMENT Port EMPTY>
+<!ATTLIST Port Servidor CDATA #REQUIRED>
+<!ELEMENT Preferencies (Animacions,Fitxes,Idioma,Orientacio,So)>
+<!ELEMENT Animacions EMPTY>
+<!ATTLIST Animacions Activades CDATA #REQUIRED>
+<!ELEMENT Fitxes (Blanques,Negres)>
+<!ELEMENT Blanques EMPTY>
+<!ATTLIST Blanques Path CDATA "">
+<!ELEMENT Negres EMPTY>
+<!ATTLIST Negres Path CDATA "">	 
+<!ELEMENT Idioma EMPTY>
+<!ATTLIST Idioma Seleccionat CDATA #REQUIRED>
+<!ELEMENT Orientacio EMPTY>
+<!ATTLIST Orientacio Tauler CDATA #REQUIRED>
+<!ELEMENT So EMPTY>
+<!ATTLIST So Activat CDATA #REQUIRED>

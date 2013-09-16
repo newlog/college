@@ -1,0 +1,16 @@
+learning-rate = 0.1
+
+topology = 5,1
+
+iterations = 1
+
+learning-type = unsupervised
+
+algorithm = hebbian
+
+iterations = 5
+
+dataset=  ./src/dataset/good_sinus.txt
+
+sigmoid = none
+

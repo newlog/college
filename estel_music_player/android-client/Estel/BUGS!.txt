@@ -1,0 +1,4 @@
+
+
+
+1) Cuando se inicia la aplicaci—n, si antes de conectar se visita la pesta–a de mœsica, una vez se conecta y se vuelve a visitar la pesta–a de mœsica, el contenido de la lista no se ha actualizado con las canciones. Sigue vac’o. Cuesti—n del setListAdapter() y el onCreate, etc.

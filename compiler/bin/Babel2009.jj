@@ -1,0 +1,955 @@
+options
+{
+  LOOKAHEAD= 1;
+
+  IGNORE_CASE = true;
+  BUILD_PARSER = true;
+  COMMON_TOKEN_ACTION = true;
+}
+
+PARSER_BEGIN(Babel2009)
+
+import java.io.*;
+import java.util.*;
+import taulasimbols.*;
+
+public class Babel2009
+{
+  private static FileWriter m_fLex = null;
+  private static BufferedWriter m_buffFLex = null;
+  private static String m_strNom = null;
+  public static TaulaSimbols ts = null;
+  public static ASem as = null;
+  public static GC gen = null;
+  public static Errors oE = null;
+  public static CodigoEnsamblador oCE = null;
+
+  public static void main(String [] args)
+  {
+    try
+    {
+      if (args.length == 1)
+      {
+        m_strNom = new String();
+        String entrada = new String();
+        entrada = args [0].substring(args [0].length() - 3, args [0].length()).toLowerCase(); /*passem a minúscules per evitar problemes*/
+        if (entrada.equals("bab"))
+        {
+          m_strNom = args [0].substring(0, args [0].length() - 3);
+          FileInputStream fitxer = new FileInputStream(args [0]);
+          m_fLex = new FileWriter(m_strNom + "lex");
+          m_buffFLex = new BufferedWriter(m_fLex);
+		  			//Fichero de errores	
+          oE = Singleton_Error.getInstance(m_strNom + "err");
+          //Llamamos a la clase que escribe el codigo por pantalla
+          oCE =  Singleton_CE.getInstance(m_strNom + "asm");
+  		  //Llamada al parser
+          Babel2009 elParser = new Babel2009(fitxer);
+		  //Creo la instancia de la clase ASem (y dentro se crea la instancia de la TS y el Bloque 0)
+		  as = new ASem();
+	  gen = new GC();
+		  elParser.P(); /*Crida al símbol axioma*/
+          fitxer.close();
+          m_buffFLex.close();
+          m_fLex.close();
+          oE.tanca(); /*Cal tancar el fitxer!*/
+          oCE.tanca();
+        }
+        else
+        {
+          System.out.println("Error: necessito un fitxer .bab!");
+        }
+      }
+      else
+      {
+        System.out.println("Error: Cal passar el fitxer .bab com a argument!");
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace(System.err);
+      System.out.println(e.getMessage()	);
+    }
+  }
+
+  public static void escriuSortida(Token matchedToken)
+  {
+    try
+    {
+      if (
+      tokenImage [matchedToken.kind].equals("<ERROR>") || 
+      (tokenImage [matchedToken.kind].equals("<IDENTIFICADOR>") && 
+      matchedToken.image.length() > 32)
+      )
+      { /*si hi ha error*/
+        if (tokenImage[matchedToken.kind].equals("<ERROR>"))
+        {
+          oE.errorLexic(Errors.ERR_LEX_1, matchedToken);
+        }
+        else
+        {
+          oE.errorLexic(Errors.ERR_LEX_2, matchedToken);
+        }
+      }
+      else
+      { /*no hi ha error lèxic <ERROR>*/
+        String lexic;
+        if (tokenImage [matchedToken.kind].equals("<EOF>"))
+        {
+          lexic = new String("* Fi de l'anàlisi *");
+        }
+        else
+        {
+          lexic = new String("Token: [" + Babel2009.tokenImage [matchedToken.kind] + "], lexema: [" + matchedToken.image + "]");
+        }
+        m_buffFLex.write(lexic);
+        m_buffFLex.newLine();
+        m_buffFLex.flush();
+      }
+    }
+    catch (IOException ioe)
+    {
+      ioe.printStackTrace(System.err);
+    }
+  }
+}
+
+PARSER_END(Babel2009)
+
+SKIP :
+{
+  " "
+| "\t"
+| "\b"
+| "\n"
+| "\r"
+| "//"
+}
+
+SPECIAL_TOKEN :
+{
+  < COMMENT : ("//") (~[ "\n"-"\r" ])* >
+}
+
+TOKEN : /*Paraules reservades*/
+{
+  < A : "a" >
+| < CADENA : "cadena" >
+| < CICLE : "cicle" >
+| < CONST : "const" >
+| < DE : "de" >
+| < ESCRIURE : "escriure" >
+| < FER : "fer" >
+| < FICICLE : "ficicle" >
+| < FIFUNC : "fifunc" >
+| < FIPER : "fiper" >
+| < FIPROG : "fiprog" >
+| < FISI : "fisi" >
+| < FUNCIO : "funcio" >
+| < INICI : "inici" >
+| < LLAVORS : "llavors" >
+| < LLEGIR : "llegir" >
+| < PER : "per" >
+| < PROGRAMA : "programa" >
+| < REF : "ref" >
+| < RETORNAR : "retornar" >
+| < SI : "si" >
+| < SINO : "sino" >
+| < SURTCICLE : "surtcicle" >
+| < TRIM : "trim" >
+| < VAL : "val" >
+| < VAR : "var" >
+| < VECTOR : "vector" >
+}
+
+TOKEN :
+{
+  < CTE_LOGICA :
+    (
+      "CERT" ""
+    | "FALS" ""
+    ) >
+| < CTE_ENTERA : (< DIGIT >)+ >
+| < CTE_CADENA : "\"" (~[ "\"", "\n" ])* "\"" >
+| < OPER_REL :
+    (
+      "==" ""
+    | ">" ""
+    | "<" ""
+    | ">=" ""
+    | "<=" ""
+    | "<>" ""
+    ) >
+| < TIPUS_SIMPLE :
+    (
+      "SENCER" ""
+    | "LOGIC" ""
+    ) >
+| < OP_AND : "and" "" >
+| < OP_OR : "or" "" >
+| < OP_NOT : "not" "" >
+| < OP_MAS : "+" "" >
+| < OP_MENOS : "-" "" >
+| < OP_MUL : "*" "" >
+| < OP_DIV : "/" "" >
+| < OP_CONCAT : "&" "" >
+| < IGUAL : "=" "" >
+| < MENOSIGUAL : "-=" "" >
+| < MASIGUAL : "+=" "" >
+| < CONCATIGUAL : "&=" "" >
+| < PCOMA : ";" "" >
+| < DPUNTS : ":" "" >
+| < PARENTOBERT : "(" "" >
+| < PARENTTANCAT : ")" "" >
+| < COMA : "," "" >
+| < CORXETOBERT : "[" "" >
+| < CORXETTANCAT : "]" "" >
+| < PUNTPUNT : ".." "" >
+}
+
+TOKEN : /*Identificador*/
+{
+  < ID :
+    < LLETRA >
+    (
+      < LLETRA >
+    | < DIGIT >
+    | "_"
+    )* >
+| < LLETRA : [ "A"-"Z", "a"-"z" ] >
+| < DIGIT : [ "0"-"9" ] >
+}
+
+TOKEN : /*Error (cap dels anteriors)*/
+{
+  < ERROR : ~[ ] >
+}
+
+TOKEN_MGR_DECLS :
+{
+  public static void CommonTokenAction(Token matchedToken)
+  {
+    Babel2009.escriuSortida(matchedToken);
+  }
+}
+
+void P() :
+{Semantic s = new Semantic();} /*Símbol axioma*/
+{	
+  {
+  CodigoEnsamblador.gc(".text");
+  CodigoEnsamblador.gc(".align 2");
+  CodigoEnsamblador.gc(".globl main");
+  }
+  Decl() < PROGRAMA > 
+  { CodigoEnsamblador.gc("main:"); 
+  //Esta mierda era la que me hacia petar el stack!!!!!! Thx to Xavi for the report :P
+  //CodigoEnsamblador.gc("move $sp, $fp"); 
+  } 
+  Llista_Inst(s) < FIPROG >
+  {
+  
+  //Cerramos el programa
+  CodigoEnsamblador.gc("# Codigo para cerrar el programa");
+  CodigoEnsamblador.gc("li $v0, 10");
+  CodigoEnsamblador.gc("syscall");
+  CodigoEnsamblador.gc("# Ultima instruccion del main");
+  CodigoEnsamblador.gc("jr $ra");
+  
+  CodigoEnsamblador.gc("\n\n\n# Codigo para el error en la comprobacion de los limites de un vector");
+  CodigoEnsamblador.gc("ERROR:");
+  CodigoEnsamblador.gc("li $v0, 4");
+  CodigoEnsamblador.gc("la $a0, MERROR");
+  CodigoEnsamblador.gc("syscall");
+  CodigoEnsamblador.gc("li $v0, 10");
+  CodigoEnsamblador.gc("syscall");
+  CodigoEnsamblador.gc("# Fin codigo");
+  
+  CodigoEnsamblador.gc("\n\n\n# Codigo para el error en la division por cero");
+  CodigoEnsamblador.gc("ERROR2:");
+  CodigoEnsamblador.gc("li $v0, 4");	 //Printf
+  CodigoEnsamblador.gc("la $a0, MERROR2"); //Lo que quieres escribir
+  CodigoEnsamblador.gc("syscall");
+  CodigoEnsamblador.gc("li $v0, 10");
+  CodigoEnsamblador.gc("syscall");
+  CodigoEnsamblador.gc("# Fin codigo");
+  
+  CodigoEnsamblador.gc(".data");
+  CodigoEnsamblador.gc(".align 0");
+  
+  CodigoEnsamblador.gc("MERROR:");
+  CodigoEnsamblador.gc(".asciiz \"[-] Index out of bounds\\n\"");
+  CodigoEnsamblador.gc("MERROR2:");
+  CodigoEnsamblador.gc(".asciiz \"[-] Division by zero, black hole incoming!\\n\"");
+  CodigoEnsamblador.gc("CERT:");
+  CodigoEnsamblador.gc(".asciiz \"CERT\"");
+  CodigoEnsamblador.gc("FALS:");
+  CodigoEnsamblador.gc(".asciiz \"FALS\"");
+  
+  CodigoEnsamblador.gc("readedLogic: ");
+  CodigoEnsamblador.gc(".space 4 ");
+  }
+}
+
+void Decl() :
+{}
+{
+  { 
+    //System.out.println(ts.toXml());
+  }
+  // Al iniciar el programa ponemos el desplazamiento general a 0
+		  //iDesplazamiento = 0; No lo hacemos ya que al instanciar la clase X ya se pone a 0		  
+  Dec_Cte()
+  {}
+  Dec_Var()
+  {}
+  Dec_Func()
+  {}
+}
+
+void Dec_Cte() :
+	{
+		//Declaraciones:
+		Semantic oExp = new Semantic();
+		Token oToken;
+ 	}
+{
+  //Pongo variable en el bloque actual, que será 0 o 1 según de donde venga (ba) si no lo está ya
+  < CONST > < ID >
+  {
+    //Recupero el Token actual
+	oToken = Babel2009.getToken(0);
+  }
+  < IGUAL >  {
+    //Recupero la expresión
+    oExp = Exp();
+    //Inserto la constante (dentro se harán las verificaciones oportunas)
+    as.insertaConstante(oToken,oExp);  }
+  < PCOMA > Dec_Cte()
+|
+  {}
+}
+
+void Dec_Var() :
+	{
+  		//Declaraciones:
+		Semantic oSTipus = new Semantic();
+		Token oToken;
+		ITipus aux=null;
+  	}
+{
+  < VAR >  {
+    oSTipus = Tipus();  }
+  < ID >
+  {
+  	//Recupero el Token actual
+	oToken = Babel2009.getToken(0);
+	//Inserto la variable (dentro se harán las verificaciones oportunas)
+    as.insertaVariable(oToken,(ITipus)oSTipus.getValue("TIPUS")); //Aumentar iDesplazamiento dentro del metodo insertaVariable()  }
+  < PCOMA > Dec_Var()
+|
+  {}
+}
+
+void Dec_Func() :
+	{
+		//Variables
+		Funcio oFuncio = new Funcio();
+		TaulaSimbols ts = Singleton_TS.getInstance(); //A: Obtenim la instancia ja creada de la taula de simbols.
+	}
+{
+  //El ID de la funcion está en bloque 0 (directamente en 0).
+  //La lista de parametros (como lista) se guarda en bloque 0 y los parámetros de la función irán al bloque 1.
+  //Antes de ir a Dec_Cte tendré que poner ba=1, pq todavía no lo he puesto!
+  //En Llista_Inst buscaré el identificador en ba
+  //Después de poner puntoycoma tendré que volver a poner ba=0;
+  //Notar que el Inserir Bloc 1 y el ba=1 van en sitios diferentes???? OJO!! Pq tengo apuntado esto??
+  
+  < FUNCIO > < ID > 
+  { 
+  	//D: Inserto la Funcion en el bloque 0, para que quede registrado el ID de la funcion en las verificaciones a partir de este punto
+  	oFuncio = as.insertaFuncion(oFuncio,Babel2009.getToken(0));//D: Le pasamos un objeto de tipo Funcio ya construido y el Tipo. Nos devuelve la función insertada (o la función no insertada si es que estaba duplicado)
+  } 
+  < PARENTOBERT >
+  { 
+	Semantic s = new Semantic();
+    Bloc bloc1 = new Bloc(); 
+    ts.inserirBloc(bloc1); // Inserto un nuevo bloque en la tabla de símbolos
+    ts.setBlocActual(1); //Establezco el bloque actual a 1
+  }
+  //D: Se nos devolverá un objeto Funcio para que luego le podamos asignar el tipo a través del ID, y a la vez le pasamos el objeto 'oFuncion' ya inicializado con el nombre para que inserte los parámetros
+  oFuncio = Llista_Param(oFuncio) //D: Le pasamos la funcion para que nos la retorne con los parámetros insertados.
+  								  //D: Internamente se insertaran los parametros como variables del Bloque 1
+  
+  < PARENTTANCAT > < DPUNTS > < TIPUS_SIMPLE > 
+  { 
+  	as.setTipusFuncion(oFuncio,Babel2009.getToken(0)); //D: Obtengo el tipo y lo modifico
+  	//D: En este punto ya tengo la función insertada correctamente
+  	s.setValue("TIPUSFUNCIO",oFuncio);
+  } 
+  < PCOMA > 
+  Dec_Cte() Dec_Var() 
+  < INICI > 
+  { s.setValue("BFUNCIO","CERT"); } //Li passo aquest parametre per controlar el RETORNA
+  s = Llista_Inst(s) 
+  < FIFUNC > { as.checkFiFuncio(s,Babel2009.getToken(0)); } 
+   < PCOMA >
+  { //D: Como se acaba la función, establezco el bloque actual a 0 y borro el bloque 1 de la TS. 
+    //D: En el Bloque 0 queda la función y la lista de parámetros
+    ts.setBlocActual(0);
+    ts.esborrarBloc(1);
+    System.out.println("Elimino bloque: " + ts.toXml());
+  }
+  Dec_Func()
+|
+  {}
+}
+
+Funcio Llista_Param(Funcio oFuncio) :
+{}
+{ //Le pasamos un objeto Funcio para que lo baje y además lo recuperamos modificado como atributo sintetizado
+  oFuncio = Llista_Param_Aux(oFuncio) {return oFuncio;}
+|
+  //D: Si no tiene parámetros, le pasamos la función tal y como está
+  {}{return oFuncio;}
+}
+
+Funcio Llista_Param_Aux(Funcio oFuncio) :
+	{
+		TipusPasParametre oTPasParametre = null; 	//En esta variable guardaremos el tipo de paso del parametro
+		Semantic oSTipus = new Semantic();		//Guardaremos el tipo del parametro								
+	}
+{
+  oTPasParametre = Param_PasParam() oSTipus = Tipus() < ID >
+  { 
+  	oFuncio = as.insertaParametro(oFuncio,Babel2009.getToken(0),(ITipus)oSTipus.getValue("TIPUS"), oTPasParametre);
+  }
+  oFuncio = Llista_Mas_Param(oFuncio)
+  { return oFuncio; }
+    
+}
+
+Funcio Llista_Mas_Param(Funcio oFuncio) :
+{}
+{
+  < COMA > oFuncio = Llista_Param_Aux(oFuncio) {return oFuncio;}
+|
+  {}{return oFuncio;}
+
+    
+}
+
+TipusPasParametre Param_PasParam() :
+	{
+		TipusPasParametre aTipusPasParam=null;
+	}
+{
+  < REF > {return aTipusPasParam.REFERENCIA;}
+| 
+  < VAL > {return aTipusPasParam.VALOR;}
+}
+
+/*
+El vector tiene expresiones que pueden estar usando Identificadores. En la expresión del tipus no sabré
+de donde vengo, y tendré que buscar si el ID ha estado declarado o no en ba, y el ba tendría que valer 0,
+pq pej si paso un vector de 1..N, la N tendrá que estar declarada en el bloque 0.
+Por eso el ba=1 de la cabecera de la funcion no lo puedo hacer antes de bajar a lista de param. 
+*/
+Semantic Tipus() :
+{
+	Semantic oSemantic1 = new Semantic(); 
+	Semantic oSemantic2 = new Semantic();
+}
+{
+  < TIPUS_SIMPLE >
+  {
+  	/* 	Miramos si TIPUS_SIMPLE es un Sencer o es Logic
+  		No hay que mirar si es otra cosa pq el Token TIPUS_SIMPLE sólo puede valer estos valores,
+  	 	y de no valerlos no hubiésemos entrado en esta parte de la producción.
+  	 	Devolvemos un objeto Tipus_Simple que es LOGIC o SENCER.
+  	*/
+    oSemantic1.setValue("TIPUS", Utils.getTipusSimple(Babel2009.getToken(0).image));
+    return oSemantic1;  }
+	| 
+  	< VECTOR > < CORXETOBERT > oSemantic1 = Exp() < PUNTPUNT > oSemantic2 = Exp() < CORXETTANCAT > < DE > < TIPUS_SIMPLE >
+  {
+    //Llama a la función de verificación del vector (Hará verificaciones y devolverá semantic)
+  	return ASem.insertarVector(oSemantic1,oSemantic2,Babel2009.getToken(0));
+  }
+| 
+  < CADENA > < PARENTOBERT > oSemantic1 = Exp() < PARENTTANCAT > 
+  {
+  	//D: Llama a la función de verificación del vector (Hará verificaciones y devolverá semantic)
+    return ASem.insertarCadena(oSemantic1,Babel2009.getToken(0));
+  }
+}
+
+Semantic Exp() :
+{
+	Semantic s1= new Semantic(); //D: Objetos semantic para mover valores heredando y sintetizando
+	Semantic s2= new Semantic();
+}
+{
+  s1=Exp_Simple() s2=Exp_Aux(s1) {
+  //Si libero aquí las operaciones tales que y = (y*2) - ((y*5)/2); fallan ya que el registro que contiene (y*2) se libera antes de hacer el - ((y*5)/2).
+  //if (s1.getValue("REG") != null) {System.out.println("LIBERO S1 -->"); Utils.setReg((String)s1.getValue("REG"));}
+  //if (s2.getValue("REG") != null) {System.out.println("LIBERO S2 -->"); Utils.setReg((String)s2.getValue("REG"));}
+  return s2;
+  }
+}
+
+Semantic Exp_Aux(Semantic s) :
+{
+	Semantic osExpSimple = new Semantic();
+	Token oToken = new Token();
+}
+{
+  < OPER_REL > {oToken = Babel2009.getToken(0);} osExpSimple=Exp_Simple() 
+  { return as.calcularRelacional(s,oToken,osExpSimple); }
+  
+  //TODO: D: Hay que hacer esta parte operando operadores y tipos LOGIC
+  //{return s;} //D: Esto no tendría que ser s sino el resultado de Exp_Simple. Esta solo así para hacer test
+|
+  {}{return s;} //D: Si no hay nada más, retorno lo que recibo
+}
+
+Semantic Exp_Simple() :
+{
+	Semantic osOperadorU = new Semantic(); //D: Semantic donde guardare el operador de Operador_Unario
+	Semantic osTerme = new Semantic(); //D: Semantic donde guardare el valor sintetizado de Terme
+	Semantic osResultUnario = new Semantic(); //D: Semantic donde guardaré el resultado de CalcularUnario para pasarlo a MasTermes
+	Semantic osResult = new Semantic(); //D: Semantic donde guardaré el resultado de Exp_Simple para devolverlo
+
+}
+{
+  osOperadorU = Operador_Unario() 
+  osTerme = Terme()
+  {
+  	//D: Calculo en función del operador Unario y el término
+  	//Ya he generado el código para el calculo unario
+  	osResultUnario = as.calcularUnario(osOperadorU,osTerme,Babel2009.getToken(0)); //D: Le paso el token actual para poder generar el error en caso que lo hubiera
+  } 
+  osResult = Mas_Termes(osResultUnario)
+  
+  {return osResult;} //Devuelvo el resultado de Mas_Termes
+}
+
+Semantic Operador_Unario() :{Semantic s = new Semantic();}
+{
+	//D: (Poner esto en la Memoria) La KEY no es OPER_U pq el calculo se hace en CalcularUnario, y aquí ya sé que el operador es unario. Así siempre trabajo con la misma KEY, me facilita el trabajo.
+	//D: El calculo es diferente si estoy en exp_simple o en mas_termes por el tipo de operador que puedo recibir
+	//D: En mas_termes y mas factores intento reaprovechar la operación Calcular
+
+  < OP_MAS > {s.setValue("OPER","OP_MAS"); return s;} 
+| 
+  < OP_MENOS > {s.setValue("OPER","OP_MENOS"); return s;}
+| 
+  < OP_NOT > {s.setValue("OPER","OP_NOT"); return s;}
+|
+  {} {return s;} //Para indicar que no hay operador unario. En CalcularUnario OPER_U valdrá null y no se hará nada.
+}
+
+Semantic Mas_Termes(Semantic s) :
+{ 
+	Semantic osOperadorB1 = new Semantic();
+	Semantic osTerme = new Semantic(); 
+	Semantic osResultB1 = new Semantic();
+	Semantic osResult = new Semantic();
+}
+{
+  osOperadorB1 = Operador_Binario1() 
+  osTerme = Terme() 
+  {
+  	//D: Calculo en función del Semantic recibido, el operador Binario y el Terme
+  	osResultB1 = as.calcularBinario(s,osOperadorB1,osTerme,Babel2009.getToken(0)); //D: Le paso el token actual para poder generar el error en caso que lo hubiera
+  //AQUI QUIZÁ DEBERÍA LIBERAR EL REGISTRO DE S!!!!!!!!!!!!!!!!!!!!!!!!!!
+ // 				if (s.getValue("REG") != null) {System.out.println("(T) FREE S AFTER CALCULARBINARIO() -->"); Utils.setReg((String)s.getValue("REG"));}
+  }   
+  osResult = Mas_Termes(osResultB1)
+  {
+  //				if (osTerme.getValue("REG") != null) {System.out.println("LIBERO OSTERME -->"); Utils.setReg((String)osTerme.getValue("REG"));}
+  return osResult;
+  } //Devuelvo el resultado de Mas_Termes
+|
+  {}{return s;} //Devuelvo lo mismo que recibo
+}
+
+Semantic Operador_Binario1() :{Semantic s = new Semantic();}
+{
+  < OP_OR > {s.setValue("OPER","OP_OR"); return s;} 
+| 
+  < OP_MENOS > {s.setValue("OPER","OP_MENOS"); return s;} 
+| 
+  < OP_MAS > {s.setValue("OPER","OP_MAS"); return s;} 
+}
+
+Semantic Terme() ://D: Retornaré los atributos de TIPUS, ESTATICA y VALOR a través de Semantic
+{
+	Semantic osFactor = new Semantic();
+	Semantic osResult = new Semantic();
+}
+{
+  osFactor = Factor() 
+  osResult = Mas_Factores(osFactor)
+  {return osResult; }
+}
+
+Semantic Mas_Factores(Semantic s) :
+{
+	Semantic osOperadorB2 = new Semantic();
+	Semantic osFactor = new Semantic();
+	Semantic osResultB2 = new Semantic();
+	Semantic osResult = new Semantic();
+}
+{
+  osOperadorB2 = Operador_Binario2() 
+  osFactor = Factor() 
+  {
+  	//D: Calculo en función del Semantic recibido, el operador Binario y el Factor
+  	osResultB2 = as.calcularBinario(s,osOperadorB2,osFactor,Babel2009.getToken(0)); //D: Le paso el token actual para poder generar el error en caso que lo hubiera
+  //AQUÍ QUIZÁ DEBERÍA LIBERAR EL REGISTRO DE S!
+  //Si libero aquí en operaciones como y = x * 2 - 6; o y = (x*2)-6; se libera el registro que contiene el resultado de x*2 y falla!
+  //if (s.getValue("REG") != null) {System.out.println("(F)FREE S AFTER CALCULARBINARIO() -->"); Utils.setReg((String)s.getValue("REG"));}	
+  }
+  osResult = Mas_Factores(osResultB2)
+  {
+  //ESTO SOLUCIONA EL PROBLEMA, PERO NO FUNCIONA GENERALMENTE (SUPONGO!!!)
+  //if (osResult.getValue("REG") != null) {System.out.println("(F)FREE S AFTER CALCULARBINARIO() -->"); Utils.setReg((String)osResult.getValue("REG"));}
+  return osResult;
+  } //D: Devuelvo el resultado de Mas_Factores
+|
+  {}{return s;} //D: Devuelvo lo mismo que recibo
+}
+
+Semantic Operador_Binario2() :{Semantic s = new Semantic();}
+{
+  < OP_AND > {s.setValue("OPER","OP_AND"); return s;} 
+| 
+  < OP_DIV > {s.setValue("OPER","OP_DIV"); return s;} 
+| 
+  < OP_MUL > {s.setValue("OPER","OP_MUL"); return s;} 
+| 
+  < OP_CONCAT > {s.setValue("OPER","OP_CONCAT"); return s;} 
+} 
+
+Semantic Factor() :
+{Semantic s=new Semantic();}
+{
+  < CTE_ENTERA > {	return as.makeCteEntera(Babel2009.getToken(0)); }
+| 
+  < CTE_LOGICA > {	return as.makeCteLogica(Babel2009.getToken(0)); }
+| 
+  < CTE_CADENA > {	return as.makeCteCadena(Babel2009.getToken(0)); }
+| 
+  < PARENTOBERT > {Semantic osExp = new Semantic(); } osExp=Exp() < PARENTTANCAT > 
+  { return osExp; }
+| 
+  < TRIM > < PARENTOBERT > s=Exp() < PARENTTANCAT > { return as.makeTrimCadena(s,Babel2009.getToken(0)); }
+| 
+  < ID > { Semantic osLL1 = new Semantic(); } osLL1=LL1(Babel2009.getToken(0)) 
+  /*(4)Generación de código para EXP()*/
+  { s = osLL1;
+  //Pongo este if que no esta en los apuntes porque cuando es el valor de una constante, no tenemos registro y esto peta! 
+  if (osLL1.getValue("REG") != null) 
+  	    s.setValue("REG", (String) osLL1.getValue("REG"));
+  }
+  { return s; }
+}
+
+Semantic LL1(Token oToken) :
+{ 
+	Semantic osFuncion = new Semantic();
+	Semantic osVectorOVar = new Semantic();
+}
+{
+  < PARENTOBERT > { osFuncion = as.checkEsFuncion(oToken); } //D: Verifico que sea función y devuelvo semantic con objeto Funcion dentro
+  LParam_Reales(osFuncion) //D: Aquí dentro verifico los parámetros en función del objeto Funcion que está dentro de osFuncion
+  < PARENTTANCAT > 
+  { 
+  	return as.retornaSemFuncion(osFuncion); //D: Devuelvo un Semantic con el tipo de la función, estática a FALSO y valor NULO pq no es estática
+  }
+| 
+  osVectorOVar=Variable_Aux(oToken)
+  /*(3)Generación de código para EXP*/
+  { 
+  //No comentar, sino la DIR es nula cuando tenemos una constante. Esta en los apuntes de la Tona, no del Xavi
+  if ( ((String) osVectorOVar.getValue("ESTATIC")).compareTo("FALS") == 0 ) {
+  	  String Registro = Utils.getReg();
+  	  CodigoEnsamblador.gc("# Codigo del punto (3) de expresiones (no estatico)");
+    CodigoEnsamblador.gc("lw "+Registro+", "+(String)osVectorOVar.getValue("DIR"));
+    CodigoEnsamblador.gc("# Fin codigo");
+    osVectorOVar.setValue("REG", Registro);
+    //Utils.setReg(Registro);
+  }
+  }
+  { return osVectorOVar; }
+}
+
+void LParam_Reales(Semantic osFuncion) : {Semantic s=new Semantic();}
+{
+	{ s=osFuncion; s.setValue("COUNTP",0); } //D: Inicializo contador de parámetros de bajada
+  	LParamR(s) //D: Tiene parámetros. Le paso el objeto para que analice parámetro a parámetro en función del contador
+|
+  {} { as.checkFuncionSinParametros(osFuncion); } //D: Verifico que la función no tiene parámetros
+}
+
+void LParamR(Semantic osFuncion) :{Semantic osExpParametro=new Semantic(); Semantic s=new Semantic();}
+{
+  osExpParametro=Exp() 
+  { 
+  	s = osFuncion; //En ete punto osFuncion tiene tanto el contador como el objeto funcion
+  	s.setValue("COUNTP",((Integer)s.getValue("COUNTP"))+1);  //Incremento contador de parámetros de bajada
+  	as.checkFuncionParametro(s,osExpParametro); //TODO: Verifico límites de parametros y tipos
+  }
+  Mas_Param(osFuncion)
+}
+
+void Mas_Param(Semantic osFuncion) : {}
+{
+  < COMA > LParamR(osFuncion) {}
+|
+  {} { as.checkFuncionFinParametros(osFuncion); } //Verifico que el contador de COUNTP es igual al número de parámetros de la función
+}
+
+Semantic Variable_Aux(Token oToken) :
+//Puede entrar por aquí cuando se asigne un valor a un ID (Inst)
+//o desde Factor pasando por LL1()
+																																																																																																{Semantic s = new Semantic();}
+{
+  < CORXETOBERT > s=Exp() < CORXETTANCAT >
+  //Lo hacemos antes de comprobar que el ID sea un vector ya que se nos asegura que no habran errores semánticos. No problem. 
+  /*(2) Generación código EXP()*/
+  { 
+  //(2.1) Código para verificar que LI <= exp.reg <= LS
+  gen.verificaLimitesVector(s, oToken);
+  //(2.2) Código para calcular la dirección del elemento
+  	//Modifico s ya que dentro del método cambio el parámetro DIR del semántico
+  s = gen.calculaDireccionAccesoVector(s, oToken);
+  return as.checkVector(oToken,s); 		//Verifico que ID es vector y retorno semantic con 3 atributos 
+  }
+|
+  {}
+  /*(1) Generación de código EXP()*/
+  {return as.checkEsCteVar(oToken); } //Verifico que el ID es cte o var y retorno en consecuencia
+}
+
+Semantic Llista_Inst(Semantic osH) :
+{
+	Semantic s1 = new Semantic();
+	Semantic s2 = new Semantic();
+}
+{
+  s1=Inst(osH) < PCOMA > s2 = Mas_Inst(s1) { return s2; }
+}
+
+Semantic Mas_Inst(Semantic sh) :
+{Semantic s = new Semantic();}
+{
+  s = Llista_Inst(sh) { return s; }
+|
+  {} { return sh; }
+}
+
+Semantic Inst(Semantic osH) :
+{ 
+	Semantic osSem1 = new Semantic();
+	Semantic osSem2 = new Semantic();
+	Semantic osOper = new Semantic();
+	Token oToken = new Token();
+}
+{
+  < ID > {oToken = Babel2009.getToken(0); } 
+  osSem1 = Variable_Aux(oToken) 
+  osOper = Oper_Asig() 
+  osSem2 = Exp() 
+  { as.checkAssign(osSem1,osOper,osSem2,oToken); return osH; }
+| 
+  < ESCRIURE > < PARENTOBERT > LExp_Escriure() < PARENTTANCAT > {  return osH; }
+| 
+  < LLEGIR > < PARENTOBERT > LVar_Llegir() < PARENTTANCAT > { return osH; }
+| 
+  < CICLE > { 
+  /* Creem objecte semantic amb bClicle=TRUE  */ osSem1.setValue("BCICLE","CERT"); 
+  /* GC: Generación de codigo para la instrucción cicle */
+  String Eti1 = Utils.getEtiqueta();
+  String Eti2 = Utils.getEtiqueta();
+  CodigoEnsamblador.gc("# Codigo inicial de la instruccion cicle");
+  CodigoEnsamblador.gc(Eti1+":");
+  CodigoEnsamblador.gc("# Fin codigo");
+  osSem1.setValue("ETI", Eti2);
+  /* 	       FIN GC         */
+  }  
+  osSem2 = Llista_Inst(osSem1) //Li pasem el nou objecte creat i ens retorna el que vingui del surtcicle (si es que ve algo)
+  < FICICLE > 
+  			{ 	/* En realitat no cal fer res, pq ja es el surtcicle el que fa la comprovacio de BLCICLE. L'únic que ens pot donar error semantic es el SURTCICLE  */ 
+   				as.checkWarningCicle(osSem2,Babel2009.getToken(0));
+   				/* GC: Codigo final de la instrucción cicle */
+   				CodigoEnsamblador.gc("# Codigo final de la instruccion cicle");
+   				CodigoEnsamblador.gc("b "+Eti1);
+   				CodigoEnsamblador.gc(Eti2+":");
+   				CodigoEnsamblador.gc("#Fin codigo");
+   				/*             FIN GC            */
+   				return osH; 
+   			}  
+| 
+  < SI > osSem1 = Exp() { as.checkSi(osSem1,Babel2009.getToken(0)); } 
+  < LLAVORS > 
+  {
+  /*   GC: CODIGO DEL IF */
+  String Eti4 = Utils.getEtiqueta();
+  String RegOperacional = null;
+  CodigoEnsamblador.gc("# Codigo del punto (1) del si");
+  if ( (RegOperacional = (String)osSem1.getValue("REGOPERACIONAL")) != null) {
+     CodigoEnsamblador.gc("beqz "+RegOperacional+", "+Eti4);
+  }
+  CodigoEnsamblador.gc("# Fin codigo del punto (1) del si");
+  Utils.setReg(RegOperacional);
+  /*   GC: FIN CODIGO IF */
+  }
+  Llista_Inst(osH) 
+  {
+  CodigoEnsamblador.gc("# Codigo del punto (2) del si");
+  String Eti5 = Utils.getEtiqueta();
+  CodigoEnsamblador.gc("b "+Eti5);
+  CodigoEnsamblador.gc(Eti4+":");
+  CodigoEnsamblador.gc("# Fin codigo del punto (2) del si");
+  }
+  Inst_Sino(osH) 
+  < FISI > 
+  {
+  CodigoEnsamblador.gc("# Codigo del punto (3) del si");
+  CodigoEnsamblador.gc(Eti5+":");
+  CodigoEnsamblador.gc("# Fin codigo del punto (3) del si"); 
+  return osH; 
+  }
+| 
+  < SURTCICLE > { 
+  /* GC para salir de la instruccion cicle */
+  String Eti3 = null;
+  if ( osH.getValue("ETI") instanceof String ) {
+     if ( (Eti3 = (String) osH.getValue("ETI")) != null ) {
+          CodigoEnsamblador.gc("# Codigo para el surtcicle");
+          CodigoEnsamblador.gc("b "+Eti3);
+          CodigoEnsamblador.gc("# Fin codigo surtcicle");
+     }
+  }
+  /*               FIN GC                  */
+  /* Verificar que BCICLE==true */ 
+  return as.checkSurticicle(osH,Babel2009.getToken(0)); 
+  }
+| 
+  < RETORNAR > osSem1 = Exp() { as.checkRetornar(osH,Babel2009.getToken(0),osSem1); return osH; }
+| 
+  < PER > < ID > {oToken = Babel2009.getToken(0); } < IGUAL > osSem1 = Exp() 
+  < A >
+  {
+  //Punto (1) del per
+  String Eti6 = Utils.getEtiqueta();
+  CodigoEnsamblador.gc("# Codigo del punto (1) del PER");
+  //Metodo para el calculo de la direccion de un ID.
+  //Utilizo el método de variableaux() cuando va por lambda que me devuelve al dirección de un ID cualquiera.
+  Semantic osIDAddress = as.checkEsCteVar(oToken);
+  CodigoEnsamblador.gc("# Codigo para asignar el valor de EXP al ID");
+  String sDir = null;
+  if ( (sDir = (String) osIDAddress.getValue("DIR")) != null) {
+    if ( osSem1.getValue("REG") != null ) {
+      CodigoEnsamblador.gc("sw "+(String)osSem1.getValue("REG")+", "+sDir);
+    } else {
+      if (osSem1.getValue("VALOR") != null ) {
+        String Rtemp = Utils.getReg();
+        CodigoEnsamblador.gc("li "+Rtemp+", "+osSem1.getValue("VALOR"));
+        CodigoEnsamblador.gc("sw "+Rtemp+", "+sDir); 
+        Utils.setReg(Rtemp);
+      }
+    }
+  }
+  String Rtemp2 = Utils.getReg();
+  CodigoEnsamblador.gc(Eti6+":");
+  }
+  osSem2 = Exp() { as.checkPer(oToken,osSem1,osSem2); } 
+  < FER > 
+  {
+  //Punto (2) del per
+  CodigoEnsamblador.gc("# Codigo del punto (2) del PER");
+  String Eti7 = Utils.getEtiqueta();
+  CodigoEnsamblador.gc("# Codigo para recuperar el valor de ID en cada vuelta y compararlo");
+  CodigoEnsamblador.gc("lw "+Rtemp2+", "+sDir);
+  if ( osSem2.getValue("REG") != null) {
+    CodigoEnsamblador.gc("bgt "+Rtemp2+", "+(String)osSem2.getValue("REG")+", "+Eti7);
+  } else {
+    if ( osSem2.getValue("VALOR") != null) {
+    	  String Rtemp3 = Utils.getReg();
+    	  CodigoEnsamblador.gc("li "+Rtemp3+", "+osSem2.getValue("VALOR"));
+      CodigoEnsamblador.gc("bgt "+Rtemp2+", "+Rtemp3+", "+Eti7);
+      Utils.setReg(Rtemp3);
+    }
+  }
+  Utils.setReg(Rtemp2);
+  }
+  Llista_Inst(osH)
+  {
+  //Punto (3) del per
+  CodigoEnsamblador.gc("# Codigo del punto (3) del PER");
+  String Rtemp4 = Utils.getReg();
+  CodigoEnsamblador.gc("lw "+Rtemp4+", "+sDir);
+  CodigoEnsamblador.gc("addi "+Rtemp4+", "+Rtemp4+", 1");
+  CodigoEnsamblador.gc("sw "+Rtemp4+", "+sDir);
+  CodigoEnsamblador.gc("b "+Eti6);
+  Utils.setReg(Rtemp4);
+  }
+  < FIPER > 
+  {
+  //Punto (4) del per
+  CodigoEnsamblador.gc("#Codigo del punto (4) del PER. Fin");
+  CodigoEnsamblador.gc(Eti7+":"); 
+  return osH; 
+  }
+}
+
+Semantic Oper_Asig() :
+{}
+{
+  < IGUAL > {return as.getAssignOperator(Babel2009.getToken(0)); }
+| < MENOSIGUAL > {return as.getAssignOperator(Babel2009.getToken(0)); }
+| < MASIGUAL > {return as.getAssignOperator(Babel2009.getToken(0)); }
+| < CONCATIGUAL > {return as.getAssignOperator(Babel2009.getToken(0)); }
+}
+
+void Inst_Sino(Semantic osH) :
+{}
+{
+  < SINO > Llista_Inst(osH)
+|
+  {}
+}
+
+void LExp_Escriure() :
+{ Semantic osS = new Semantic(); }
+{
+  osS = Exp() { as.checkEscriure(osS,Babel2009.getToken(0)); } Mas_Exp()
+}
+
+void Mas_Exp() :
+{}
+{
+  < COMA > LExp_Escriure()
+|
+  {}
+}
+
+void LVar_Llegir() :
+{ 
+	Semantic osS = new Semantic(); 
+	Token oToken = new Token();
+}
+{
+  oToken = < ID > osS = Variable_Aux(Babel2009.getToken(0)) { as.checkLlegir(osS,oToken); } Mas_Var()
+}
+
+void Mas_Var() :
+{}
+{
+  < COMA > LVar_Llegir()
+|
+  {}
+}

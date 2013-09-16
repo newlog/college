@@ -1,0 +1,141 @@
+\section{Apéndice I}
+\label{ap:I}
+
+\subsection*{Cargando librerías externas vía LD\_PRELOAD}
+
+En este apéndice se detalla el modo por el cual es posible utilizar funciones para la gestión de la memoria dinámica que sean externas a la \textit{glibc}. De este modo se conseguirá que cuando un programa ejecute una función como por ejemplo |malloc()|, se ejecute la función |malloc()| implementada en una librería externa. \\
+En el caso que concerniente a esta investigación, las funciones que se ejecutarán serán aquellas implementadas en el algoritmo original \textit{ptmalloc}, de modo que, a diferencia de lo que ocurriría en un sistema GNU/Linux configurado por defecto, la librería estándar de C instalada en el sistema no tendrá ningún efecto en el momento de ejecutar las funciones relacionadas con la gestión de la memoria dinámica del sistema.\bigskip
+
+El primer paso a seguir es descargar el código del algoritmo \textit{ptmalloc} de su página web original \footnote{Código \textit{ptmalloc}:\url{http://www.malloc.de/malloc/ptmalloc2-current.tar.gz} }.\\
+Una vez descargado se debe descomprimir con el comando:
+\begin{center}
+|tar xvf ptmalloc2-current.tar.gz|
+\end{center}
+El contenido de la carpeta descomprimida debería ser el siguiente:
+
+\begin{listing}[style=consola, caption=Archivos del algoritmo \textit{ptmalloc}, label=out:ptmalloc_contents]	
+newlog@ubuntu:~/Downloads/ptmalloc2$ ls -1
+arena.c
+ChangeLog
+COPYRIGHT
+hooks.c
+lran2.h
+Makefile
+malloc.c
+malloc.h
+malloc-stats.c
+README
+sysdeps
+tst-mallocstate.c
+tst-mstats.c
+t-test1.c
+t-test2.c
+t-test.h
+newlog@ubuntu:~/Downloads/ptmalloc2$
+\end{listing}
+
+\pagebreak
+
+Para compilar el código sólo sería necesario ejecutar el comando |make shared|. Sin embargo, si se ejecuta dicho comando se obtiene el siguiente error: \bigskip
+
+\begin{listing}[style=consola, caption=Compilación erronea de \textit{ptmalloc}, label=out:ptmalloc_err_comp]	
+newlog@ubuntu:~/Downloads/ptmalloc2$ make shared
+cc -shared -fpic  -g -O   -DUSE_TSD_DATA_HACK -D_REENTRANT -Isysdeps/generic -DTHREAD_STATS=1  malloc.c malloc-stats.c -o malloc.so
+In file included from malloc.c:1484:
+malloc.h:72: warning: "__THROW" redefined
+/usr/include/sys/cdefs.h:47: note: this is the location of the previous definition
+malloc.c: In function 'mremap_chunk':
+malloc.c:3307: error: 'MREMAP_MAYMOVE' undeclared (first use in this function)
+malloc.c:3307: error: (Each undeclared identifier is reported only once
+malloc.c:3307: error: for each function it appears in.)
+In file included from malloc-stats.c:27:
+malloc.h:72: warning: "__THROW" redefined
+/usr/include/sys/cdefs.h:47: note: this is the location of the previous definition
+make: *** [malloc.so] Error 1
+newlog@ubuntu:~/Downloads/ptmalloc2$
+\end{listing}
+
+Para solucionar este error basta con ir a la línea 693 del archivo malloc.c y modificar el siguiente código:
+\lstset{language=C, caption=HAVE\_MREMAP igual a 1 (malloc.c:693), label=code:err_to_compile_ptmalloc}
+\begin{lstlisting}
+#ifndef HAVE_MREMAP
+#ifdef linux
+#define HAVE_MREMAP 1
+#else
+#define HAVE_MREMAP 0
+#endif
+\end{lstlisting}
+
+Por:
+
+\lstset{language=C, caption=HAVE\_MREMAP igual a 0 (malloc.c:693), label=code:fix_to_compile_ptmalloc}
+\begin{lstlisting}
+#ifndef HAVE_MREMAP
+#ifdef linux
+#define HAVE_MREMAP 0
+#else
+#define HAVE_MREMAP 0
+#endif
+\end{lstlisting}
+
+\pagebreak
+
+Esta modificación no afecta al funcionamiento del algoritmo dadas las funciones que se tratan en esta investigación, así que este cambio en el código es superfluo. Una vez realizado dicho cambio basta con ejecutar el comando de nuevo: \bigskip
+
+\begin{listing}[style=consola, caption=Compilación correcta de \textit{ptmalloc}, label=out:ptmalloc_succ_comp]	
+newlog@ubuntu:~/Downloads/ptmalloc2$ make shared
+cc -shared -fpic  -g -O   -DUSE_TSD_DATA_HACK -D_REENTRANT -Isysdeps/generic -DTHREAD_STATS=1  malloc.c malloc-stats.c -o malloc.so
+In file included from malloc.c:1484:
+malloc.h:72: warning: "__THROW" redefined
+/usr/include/sys/cdefs.h:47: note: this is the location of the previous definition
+In file included from malloc-stats.c:27:
+malloc.h:72: warning: "__THROW" redefined
+/usr/include/sys/cdefs.h:47: note: this is the location of the previous definition
+newlog@ubuntu:~/Downloads/ptmalloc2$ ls -1
+arena.c
+ChangeLog
+COPYRIGHT
+hooks.c
+lran2.h
+Makefile
+malloc.c
+malloc.h
+malloc.so
+malloc-stats.c
+README
+sysdeps
+tst-mallocstate.c
+tst-mstats.c
+t-test1.c
+t-test2.c
+t-test.h
+\end{listing}
+
+Tal y como se puede ver, se ha generado un nuevo archivo llamado malloc.so. Esta es la librería que se debe cargar por tal de evitar que se ejecuten las funciones de la \textit{glibc}. Para hacerlo basta con ejecutar los siguientes comandos\footnote{Información sobre LD\_PRELOAD:\\ \url{http://en.wikipedia.org/wiki/Dynamic_linker\#ELF-based_Unix-like_systems} }: \bigskip
+
+\begin{listing}[style=consola, caption=LD\_PRELOAD, label=out:ld_preload]
+newlog@ubuntu:~/Downloads/ptmalloc2$ LD_PRELOAD=$(pwd)/malloc.so
+newlog@ubuntu:~/Downloads/ptmalloc2$ export LD_PRELOAD
+newlog@ubuntu:~/Downloads/ptmalloc2$ env | grep LD_PRELOAD
+LD_PRELOAD=/home/newlog/Downloads/ptmalloc2/malloc.so
+\end{listing}
+
+Para eliminar esta variable de las variables de entorno y que el comportamiento del sistema vuelva a ser el mismo, basta con ejecutar el comando |unset LD_PRELOAD|. \bigskip
+
+Por último, y de modo opcional, si el lector tiene intención de ir más allá en el estudio del algoritmo, le sería de ayuda compilar el código con soporte para dar información sobre las macros utilizadas una vez lo esté depurando con \textit{gdb}\footnote{Información sobre el depurador \textit{gdb}:\\ \url{http://www.gnu.org/software/gdb/}}. Para conseguirlo, se deben añadir ciertos parámetros en el archivo Makefile. \\
+Se debe añadir la siguiente variable en la línea 51 (aunque no debe ser necesariamente en la línea 51): \bigskip
+
+\lstset{language=C, caption=Información para las macros (Makefile:51), label=code:makefile_macro_support}
+\begin{lstlisting}
+MACRO_INFO = -gdwarf-2 -g3
+\end{lstlisting}
+
+A continuación se debe modificar la línea 73 del mismo archivo para que quede tal que así: \bigskip
+\lstset{language=C, caption=Nuevos flags para la compilación (Makefile:73), label=code:makefile_comp_macro_support}
+\begin{lstlisting}
+malloc.so: malloc.c malloc-stats.c malloc.h
+        $(CC) $(MACRO_INFO) $(OPT_FLAGS) $(SH_FLAGS) $(CFLAGS) $(M_FLAGS) malloc.c malloc-stats.c -o $@
+\end{lstlisting}
+
+Como se puede ver, sólo se ha añadido la variable |MACRO_INFO| al conjunto de flags utilizados en el momento de la compilación. \\
+Gracias a esto, cuando el lector esté depurando el código fuente del algoritmo, será capaz de obtener información sobre las macros utilizadas en el código gracias a los comandos del depurador \textit{gdb} utilizados con dicho objetivo.

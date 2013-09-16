@@ -1,0 +1,970 @@
+TEstel
+v7
+r0
+t337049134.794242
+cCheck dependencies
+cProcessInfoPlistFile /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Info.plist Estel-Info.plist
+cCompileXIB /Users/newlog/Documents/LaSalle/Iphone/Estel/MainWindow.xib
+cCompileXIB /Users/newlog/Documents/LaSalle/Iphone/Estel/EstelViewController.xib
+cCpResource build/Debug-iphonesimulator/Estel.app/background.jpg background.jpg
+cCpResource build/Debug-iphonesimulator/Estel.app/green_circle.gif green_circle.gif
+cCpResource build/Debug-iphonesimulator/Estel.app/red_circle.gif red_circle.gif
+cCpResource build/Debug-iphonesimulator/Estel.app/next.gif next.gif
+cCpResource build/Debug-iphonesimulator/Estel.app/pause.gif pause.gif
+cCpResource build/Debug-iphonesimulator/Estel.app/play.gif play.gif
+cCpResource build/Debug-iphonesimulator/Estel.app/previous.gif previous.gif
+cProcessPCH /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch.gch Estel_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main-B9843B6026D6EFA4.o /Users/newlog/Documents/LaSalle/Iphone/Estel/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelAppDelegate.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelViewController.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/InterfaceFunctions.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/InterfaceFunctions.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Main-83E8E560E682BB5E.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuration.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuration.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Menu.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Menu.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Music.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Song.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Song.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Connection.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Connection.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/AsyncSocket.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/AsyncSocket.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel normal i386
+cGenerateDSYMFile /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app.dSYM /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel
+cTouch /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk
+c000000004CC128950000000000000110
+t1287727253
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/AVFoundation
+c000000004CC1288A00000000000F34A0
+t1287727242
+s996512
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVFoundation.h
+c000000004CC128840000000000000733
+t1287727236
+s1843
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
+c000000004CC1224400000000001C3D40
+t1287725636
+s1850688
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CFNetwork.framework/Headers/CFNetwork.h
+c000000004CC1221800000000000004CF
+t1287725592
+s1231
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004CC12246000000000029B310
+t1287725638
+s2732816
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CC1226D000000000029D5D0
+t1287725677
+s2741712
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004CC1225F0000000000001466
+t1287725663
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004CC1281F0000000000000AA1
+t1287727135
+s2721
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004CC12883000000000074D7B0
+t1287727235
+s7657392
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/arpa/inet.h
+c000000004CB3E46D0000000000001533
+t1286857837
+s5427
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/netdb.h
+c000000004A4181220000000000003057
+t1245806882
+s12375
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/netinet/in.h
+c000000004CBFACA90000000000005462
+t1287629993
+s21602
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/stdlib.h
+c000000004CB3E4860000000000002DF5
+t1286857862
+s11765
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/sys/socket.h
+c000000004CBFACAC0000000000005A69
+t1287629996
+s23145
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/AsyncSocket.h
+c000000004E5586130000000000007535
+t1314227731
+s30005
+i<Foundation/Foundation.h>
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/AsyncSocket.m
+c000000004E558613000000000001E6B5
+t1314227731
+s124597
+i"AsyncSocket.h"
+i<sys/socket.h>
+i<netinet/in.h>
+i<arpa/inet.h>
+i<netdb.h>
+i<CFNetwork/CFNetwork.h>
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuracion.h
+c000000004D9CE5FE0000000000000067
+t1302128126
+s103
+i<UIKit/UIKit.h>
+i"Constants.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuracion.m
+c000000004D9CE60800000000000005DF
+t1302128136
+s1503
+i"Settings.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuration.h
+c000000004E66BA600000000000000271
+t1315355232
+s625
+i<UIKit/UIKit.h>
+i"Main.h"
+i"InterfaceFunctions.h"
+i"Constants.h"
+i"Menu.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuration.m
+c000000004E66BB510000000000000D13
+t1315355473
+s3347
+i"Configuration.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Connection.h
+c000000004E64F40100000000000003D4
+t1315238913
+s980
+i<Foundation/Foundation.h>
+i"AsyncSocket.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Connection.m
+c000000004E66BEAB0000000000003072
+t1315356331
+s12402
+i"Connection.h"
+i"Constants.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Constants.h
+c000000004E66BEF70000000000000B07
+t1315356407
+s2823
+i<UIKit/UIKit.h>
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelAppDelegate.h
+c000000004E62744B000000000000029C
+t1315075147
+s668
+i<UIKit/UIKit.h>
+i"Constants.h"
+i"Connection.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelAppDelegate.m
+c000000004E66BB6A0000000000000F3D
+t1315355498
+s3901
+i"EstelAppDelegate.h"
+i"EstelViewController.h"
+i"Music.h"
+i"Main.h"
+i"Configuration.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.h
+c000000004D7F76F40000000000000149
+t1300199156
+s329
+i<UIKit/UIKit.h>
+i"InterfaceFunctions.h"
+i"Constants.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m
+c000000004D7F779500000000000006CB
+t1300199317
+s1739
+i"EstelViewController.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/InterfaceFunctions.h
+c000000004E553E8400000000000004A3
+t1314209412
+s1187
+i<UIKit/UIKit.h>
+i"Main.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/InterfaceFunctions.m
+c000000004E6560CC0000000000001251
+t1315266764
+s4689
+i"InterfaceFunctions.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.h
+c000000004E5543560000000000000170
+t1314210646
+s368
+i<UIKit/UIKit.h>
+i"Constants.h"
+i"Configuration.h"
+i"Menu.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.m
+c000000004DA338450000000000000569
+t1302542405
+s1385
+i"Main.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.xib
+c000000004D7F73BF0000000000001847
+t1300198335
+s6215
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Menu.h
+c000000004E66BB66000000000000045E
+t1315355494
+s1118
+i<UIKit/UIKit.h>
+i"Constants.h"
+i"InterfaceFunctions.h"
+i"Configuration.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Menu.m
+c000000004E66BB6A0000000000001446
+t1315355498
+s5190
+i"Menu.h"
+i"Connection.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.h
+c000000004E6390110000000000000160
+t1315147793
+s352
+i<UIKit/UIKit.h>
+i"Song.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.m
+c000000004E66B3BA0000000000001554
+t1315353530
+s5460
+i"Music.h"
+i"Connection.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.xib
+c000000004D63CA1E000000000000184A
+t1298385438
+s6218
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Settings.h
+c000000004D9CE5A00000000000000062
+t1302128032
+s98
+i<UIKit/UIKit.h>
+i"Constants.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Settings.m
+c000000004D9CE5A400000000000005D5
+t1302128036
+s1493
+i"Configuration.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Song.h
+c000000004E66BC3D00000000000005FC
+t1315355709
+s1532
+i<UIKit/UIKit.h>
+i<AVFoundation/AVFoundation.h>
+i"Constants.h"
+i"InterfaceFunctions.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Song.m
+c000000004E66BDE700000000000029F1
+t1315356135
+s10737
+i"Song.h"
+i<stdlib.h>
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/configuration.h
+c000000004D63C9F000000000000000DA
+t1298385392
+s218
+i<UIKit/UIKit.h>
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/configuration.m
+c000000004D63C9F00000000000000599
+t1298385392
+s1433
+i"configuration.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/configuration.xib
+c000000004D63C9F00000000000001862
+t1298385392
+s6242
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/untitled.h
+c000000004E62559C00000000000000D2
+t1315067292
+s210
+i<Foundation/Foundation.h>
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/untitled.m
+c000000004E62559C00000000000000BA
+t1315067292
+s186
+i"untitled.h"
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/EstelViewController.xib
+c000000004D62E06A0000000000001A3D
+t1298325610
+s6717
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/Estel_Prefix.pch
+c000000004D62E06A00000000000000B3
+t1298325610
+s179
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/MainWindow.xib
+c000000004D62E06A0000000000004E11
+t1298325610
+s19985
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/background.jpg
+c000000004D9B501E0000000000001D41
+t1302024222
+s7489
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/background2.jpg
+c000000004D9B50070000000000003400
+t1302024199
+s13312
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/background3.jpg
+c000000004D9B501500000000000168A8
+t1302024213
+s92328
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/background4.jpg
+c000000004D9B501E0000000000001D41
+t1302024222
+s7489
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/background5.png
+c000000004D9B50350000000000006650
+t1302024245
+s26192
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/background6.jpg
+c000000004D9B505C0000000000060023
+t1302024284
+s393251
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app
+t1315356334
+s646
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app.dSYM
+t1315356334
+s102
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel
+t1315356334
+s206932
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/EstelViewController.nib
+t1298385101
+s795
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Info.plist
+t1298385101
+s583
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Main.nib
+t2
+s0
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/MainWindow.nib
+t1298385101
+s1119
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Music.nib
+t2
+s0
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/PkgInfo
+t1298385101
+s8
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/background.jpg
+t1302024627
+s7489
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/background2.jpg
+t1302024432
+s13312
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/background3.jpg
+t1302024432
+s92328
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/background4.jpg
+t1302024432
+s7489
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/background5.png
+t1302024432
+s26192
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/background6.jpg
+t1302024432
+s393251
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/configuration.nib
+t2
+s0
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/green_circle.gif
+t1302027488
+s1211
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/next.gif
+t1314209412
+s3103
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/pause.gif
+t1314209412
+s3110
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/play.gif
+t1314209412
+s2786
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/previous.gif
+t1314209412
+s2767
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/red_circle.gif
+t1302027488
+s1212
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/AsyncSocket.o
+t1315067493
+s220100
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuracion.o
+t1302128137
+s39828
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuration.o
+t1315355498
+s52916
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Connection.o
+t1315356334
+s37668
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Estel.LinkFileList
+c000000004E62565D00000000000005B6
+t1315067485
+s1462
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelAppDelegate.o
+t1315355758
+s65480
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelViewController.mi
+t1298389152
+s976431
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelViewController.o
+t1315355498
+s43540
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/InterfaceFunctions.o
+t1315355498
+s45696
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Main-83E8E560E682BB5E.o
+t1315355498
+s41216
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Menu.o
+t1315355498
+s66912
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Music.o
+t1315355758
+s47956
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Settings.o
+t1302128036
+s39708
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Song.o
+t1315356136
+s79460
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/configuration.o
+t2
+s0
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main-B9843B6026D6EFA4.o
+t1300198428
+s6316
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main.o
+t1298385102
+s6316
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/untitled.o
+t2
+s0
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/green_circle.gif
+c000000004D9B554100000000000004BB
+t1302025537
+s1211
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/main.m
+c000000004D62E06A0000000000000165
+t1298325610
+s357
+i<UIKit/UIKit.h>
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/next.gif
+c000000004DF7B5600000000000000C1F
+t1308079456
+s3103
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/pause.gif
+c000000004DF7B3AB0000000000000C26
+t1308079019
+s3110
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/play.gif
+c000000004DF7B4A80000000000000AE2
+t1308079272
+s2786
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/previous.gif
+c000000004DF7B6110000000000000ACF
+t1308079633
+s2767
+
+N/Users/newlog/Documents/LaSalle/Iphone/Estel/red_circle.gif
+c000000004D9B553900000000000004BC
+t1302025529
+s1212
+
+N/var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch.gch
+t1298385102
+s15453392
+
+NEstel-Info.plist
+c000000004D62E06A000000000000038D
+t1298325610
+s909
+
+C<C0013:'CompileC EstelViewController.o':P9:W0>
+s320081951.959479
+e320081952.218585
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelViewController.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@82"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m320081951#320081952#0(0"0(0#0#74"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m8029390838950945792#1901"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /Users/newlog/Documents/LaSalle/Iphone/Estel/Estel_Prefix.pch -fpch-preprocess -E /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelViewController.mi0#
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies337049134#337049134#0(0"0(0#1#0"8647331904#0"0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/AsyncSocket.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/AsyncSocket.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s336760291.448391
+e336760293.042874
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/AsyncSocket.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/AsyncSocket.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/AsyncSocket.m336760291#336760293#0(0"0(0#0#66"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/AsyncSocket.m8611629152#2024"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/AsyncSocket.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/AsyncSocket.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuracion.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuracion.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s323820937.176610
+e323820937.255635
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuracion.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuracion.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuracion.m323820937#323820937#0(0"0(0#0#68"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuracion.m8614008992#1966"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuracion.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuracion.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuration.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuration.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337048298.616616
+e337048298.793803
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuration.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuration.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuration.m337048298#337048298#0(0"0(0#0#68"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuration.m8646985504#2028"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Configuration.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Configuration.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Connection.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Connection.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337049134.438329
+e337049134.641999
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Connection.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Connection.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@73"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Connection.m337049134#337049134#0(0"0(0#0#65"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Connection.m8644132640#2022"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Connection.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Connection.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelAppDelegate.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337048558.260976
+e337048558.528567
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelAppDelegate.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@79"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelAppDelegate.m337048558#337048558#0(0"0(0#0#71"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelAppDelegate.m8637202368#2034"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelAppDelegate.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelAppDelegate.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelViewController.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337048298.368730
+e337048298.508602
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelViewController.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@82"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m337048298#337048298#0(0"0(0#0#74"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m8643484096#2040"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/EstelViewController.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/InterfaceFunctions.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/InterfaceFunctions.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337048298.508701
+e337048298.616513
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/InterfaceFunctions.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/InterfaceFunctions.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/InterfaceFunctions.m337048298#337048298#0(0"0(0#0#73"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/InterfaceFunctions.m8648135648#2038"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/InterfaceFunctions.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/InterfaceFunctions.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Main-83E8E560E682BB5E.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337048298.608479
+e337048298.746680
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Main-83E8E560E682BB5E.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.m337048298#337048298#0(0"0(0#0#59"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.m8647898784#2027"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Main-83E8E560E682BB5E.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Menu.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Menu.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337048298.746789
+e337048298.896560
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Menu.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Menu.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Menu.m337048298#337048298#0(0"0(0#0#59"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Menu.m8648112960#2010"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Menu.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Menu.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Music.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337048558.262393
+e337048558.436438
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Music.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@68"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.m337048558#337048558#0(0"0(0#0#60"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.m8635756960#2012"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Music.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Settings.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Settings.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s323820836.257874
+e323820836.354962
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Settings.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Settings.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@71"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Settings.m323820836#323820836#0(0"0(0#0#63"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Settings.m8616909152#1956"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Settings.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Settings.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Song.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Song.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s337048935.971420
+e337048936.317007
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Song.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Song.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Song.m337048935#337048936#0(0"0(0#0#59"/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Song.m8642238464#2010"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Song.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Song.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/configuration.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/configuration.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main-B9843B6026D6EFA4.o /Users/newlog/Documents/LaSalle/Iphone/Estel/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s321891228.356448
+e321891228.514321
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main-B9843B6026D6EFA4.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/main.m321891228#321891228#0(0"0(0#0#51"/Users/newlog/Documents/LaSalle/Iphone/Estel/main.m8627881792#1957"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/main.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main-B9843B6026D6EFA4.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main.o /Users/newlog/Documents/LaSalle/Iphone/Estel/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s320077902.763183
+e320077902.953245
+r1
+xCompileC
+xbuild/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main.o
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Users/newlog/Documents/LaSalle/Iphone/Estel/main.m320077902#320077902#0(0"0(0#0#51"/Users/newlog/Documents/LaSalle/Iphone/Estel/main.m8604606368#1940"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -include /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/main.m -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/main.o0#
+
+CCompileC build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/untitled.o /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/untitled.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileXIB /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Main.xib
+r0
+
+CCompileXIB /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/Music.xib
+r0
+
+CCompileXIB /Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/configuration.xib
+r0
+
+CCompileXIB /Users/newlog/Documents/LaSalle/Iphone/Estel/EstelViewController.xib
+s320077901.155893
+e320077901.628758
+r1
+xCompileXIB
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/EstelViewController.xib
+lSLF07#2@34"CompileXIB EstelViewController.xib320077901#320077901#0(0"0(0#0#68"/Users/newlog/Documents/LaSalle/Iphone/Estel/EstelViewController.xib8604335296#604"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/EstelViewController.nib /Users/newlog/Documents/LaSalle/Iphone/Estel/EstelViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCompileXIB /Users/newlog/Documents/LaSalle/Iphone/Estel/MainWindow.xib
+s320077901.153874
+e320077901.629941
+r1
+xCompileXIB
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib320077901#320077901#0(0"0(0#0#59"/Users/newlog/Documents/LaSalle/Iphone/Estel/MainWindow.xib8604316864#586"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/MainWindow.nib /Users/newlog/Documents/LaSalle/Iphone/Estel/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/background.jpg background.jpg
+s323717427.822129
+e323717427.828869
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/background.jpg
+xbackground.jpg
+lSLF07#2@19"Copy background.jpg323717427#323717427#0(0"0(0#0#59"/Users/newlog/Documents/LaSalle/Iphone/Estel/background.jpg8611622976#488"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/background.jpg /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/background2.jpg background2.jpg
+s323717232.653706
+e323717232.670705
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/background2.jpg
+xbackground2.jpg
+lSLF07#2@20"Copy background2.jpg323717232#323717232#0(0"0(0#0#60"/Users/newlog/Documents/LaSalle/Iphone/Estel/background2.jpg8614295200#489"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/background2.jpg /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/background3.jpg background3.jpg
+s323717232.656629
+e323717232.670826
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/background3.jpg
+xbackground3.jpg
+lSLF07#2@20"Copy background3.jpg323717232#323717232#0(0"0(0#0#60"/Users/newlog/Documents/LaSalle/Iphone/Estel/background3.jpg8613133728#489"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/background3.jpg /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/background4.jpg background4.jpg
+s323717232.658622
+e323717232.670932
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/background4.jpg
+xbackground4.jpg
+lSLF07#2@20"Copy background4.jpg323717232#323717232#0(0"0(0#0#60"/Users/newlog/Documents/LaSalle/Iphone/Estel/background4.jpg8610967264#489"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/background4.jpg /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/background5.png background5.png
+s323717232.664581
+e323717232.679257
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/background5.png
+xbackground5.png
+lSLF07#2@20"Copy background5.png323717232#323717232#0(0"0(0#0#60"/Users/newlog/Documents/LaSalle/Iphone/Estel/background5.png8590280512#489"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/background5.png /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/background6.jpg background6.jpg
+s323717232.667316
+e323717232.679594
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/background6.jpg
+xbackground6.jpg
+lSLF07#2@20"Copy background6.jpg323717232#323717232#0(0"0(0#0#60"/Users/newlog/Documents/LaSalle/Iphone/Estel/background6.jpg8611871008#489"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/background6.jpg /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/green_circle.gif green_circle.gif
+s323720288.800927
+e323720288.807326
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/green_circle.gif
+xgreen_circle.gif
+lSLF07#2@21"Copy green_circle.gif323720288#323720288#0(0"0(0#0#61"/Users/newlog/Documents/LaSalle/Iphone/Estel/green_circle.gif8617365760#490"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/green_circle.gif /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/next.gif next.gif
+s335902212.230293
+e335902212.331112
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/next.gif
+xnext.gif
+lSLF07#2@13"Copy next.gif335902212#335902212#0(0"0(0#0#53"/Users/newlog/Documents/LaSalle/Iphone/Estel/next.gif30962724186357872#544"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/next.gif /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/pause.gif pause.gif
+s335902212.231147
+e335902212.301165
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/pause.gif
+xpause.gif
+lSLF07#2@14"Copy pause.gif335902212#335902212#0(0"0(0#0#54"/Users/newlog/Documents/LaSalle/Iphone/Estel/pause.gif8640908000#545"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/pause.gif /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/play.gif play.gif
+s335902212.231821
+e335902212.301287
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/play.gif
+xplay.gif
+lSLF07#2@13"Copy play.gif335902212#335902212#0(0"0(0#0#53"/Users/newlog/Documents/LaSalle/Iphone/Estel/play.gif8640922144#544"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/play.gif /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/previous.gif previous.gif
+s335902212.233643
+e335902212.331313
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/previous.gif
+xprevious.gif
+lSLF07#2@17"Copy previous.gif335902212#335902212#0(0"0(0#0#57"/Users/newlog/Documents/LaSalle/Iphone/Estel/previous.gif8640936992#548"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/previous.gif /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CCpResource build/Debug-iphonesimulator/Estel.app/red_circle.gif red_circle.gif
+s323720288.801906
+e323720288.811763
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Estel.app/red_circle.gif
+xred_circle.gif
+lSLF07#2@19"Copy red_circle.gif323720288#323720288#0(0"0(0#0#59"/Users/newlog/Documents/LaSalle/Iphone/Estel/red_circle.gif8615004224#488"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/newlog/Documents/LaSalle/Iphone/Estel/red_circle.gif /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+
+CGenerateDSYMFile /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app.dSYM /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel
+s337049134.690565
+e337049134.790403
+r1
+xGenerateDSYMFile
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app.dSYM
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel
+lSLF07#2@103"GenerateDSYMFile build/Debug-iphonesimulator/Estel.app.dSYM build/Debug-iphonesimulator/Estel.app/Estel337049134#337049134#0(0"0(0#0#88"/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel8644396288#457"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/dsymutil /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app.dSYM0#
+
+CLd /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel normal i386
+s337049134.642093
+e337049134.690472
+r1
+xLd
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel
+xnormal
+xi386
+lSLF07#2@93"Link /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel337049134#337049134#0(0"0(0#0#0"8647231808#1027"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -L/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -filelist /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Objects-normal/i386/Estel.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -framework CFNetwork -framework AVFoundation -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Estel0#
+
+CProcessInfoPlistFile /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Info.plist Estel-Info.plist
+s320077901.102473
+e320077901.153785
+r1
+xProcessInfoPlistFile
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Info.plist
+xEstel-Info.plist
+lSLF07#2@24"Process Estel-Info.plist320077901#320077901#0(0"0(0#0#61"/Users/newlog/Documents/LaSalle/Iphone/Estel/Estel-Info.plist32932993188560964#491"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility Estel-Info.plist -genpkginfo /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app/Info.plist0#
+
+CProcessPCH /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch.gch Estel_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s320077901.630065
+e320077902.762969
+r1
+xProcessPCH
+x/var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch.gch
+xEstel_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@27"Precompile Estel_Prefix.pch320077901#320077902#0(0"0(0#0#61"/Users/newlog/Documents/LaSalle/Iphone/Estel/Estel_Prefix.pch8605735648#1828"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-generated-files.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-own-target-headers.hmap -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-all-target-headers.hmap -iquote /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/Estel-project-headers.hmap -F/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/include -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources/i386 -I/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Estel.build/Debug-iphonesimulator/Estel.build/DerivedSources -c /Users/newlog/Documents/LaSalle/Iphone/Estel/Estel_Prefix.pch -o /var/folders/R+/R+cBK7MtEpuJSnWSdrYCiE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Estel_Prefix-abnshmagroegypeldxbiuhcrdqgd/Estel_Prefix.pch.gch0#
+
+CTouch /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app
+s337049134.790494
+e337049134.794195
+r1
+xTouch
+x/Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app
+lSLF07#2@88"Touch /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app337049134#337049134#0(0"0(0#0#0"8644054368#350"    cd /Users/newlog/Documents/LaSalle/Iphone/Estel    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /usr/bin/touch -c /Users/newlog/Documents/LaSalle/Iphone/Estel/build/Debug-iphonesimulator/Estel.app0#
+

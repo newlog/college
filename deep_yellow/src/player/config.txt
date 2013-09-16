@@ -1,0 +1,3 @@
+*********Configuracio Servidor***********
+Port Servidor  -> 9001
+IP Servidor    -> "169.254.17.90"

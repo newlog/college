@@ -1,0 +1,22 @@
+learning-rate = 0.0001
+
+topology = 5,5,1
+
+learning-type = supervised
+
+phase = train
+
+algorithm = backpropagation
+
+iterations = 5
+
+dataset=  ./src/dataset/good_sinus.txt
+
+weights= ./weights/lol.txt
+
+graphics = on
+
+sigmoid = output
+
+momentum = 0.9
+

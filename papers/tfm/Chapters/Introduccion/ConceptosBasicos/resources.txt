@@ -1,0 +1,5 @@
+Resources:
+
+http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory
+http://www.ualberta.ca/CNS/RESEARCH/LinuxClusters/mem.html
+http://lwn.net/Articles/91829/

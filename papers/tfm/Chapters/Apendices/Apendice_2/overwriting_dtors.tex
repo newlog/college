@@ -1,0 +1,351 @@
+\section{Apéndice II}
+\label{ap:II}
+
+\subsection*{Sobrescribiendo la sección .dtors en el 2012}
+
+Se conoce como .dtors la sección de un ejecutable ELF donde se almacenan las direcciones en memoria de las funciones a ejecutar una vez dicho binario se haya ejecutado. Dichas funciones se conocen con el nombre de destructores. El Código \ref{code:destructor} servirá para entender mejor cómo funcionan los destructores y la sección .dtors. \bigskip
+
+\lstset{language=C, caption=Destructor de ejemplo , label=code:destructor}
+\begin{lstlisting}
+#include <stdio.h>
+
+void destructor(void) __attribute__ ((destructor));
+
+int main(void) {
+
+        printf("Primero se ejecuta el main.\n");
+        printf("Despues, salta a 0x%x\n", (unsigned int) &destructor);
+        return 0;
+}
+
+void destructor(void) {
+        printf("Y se ejecuta destructor.\n");
+}
+\end{lstlisting}
+
+Si se compila y ejecuta el Código \ref{code:destructor} se obtiene lo siguiente: \bigskip
+
+\begin{listing}[style=consola, caption=Compilación y ejecución del destructor, label=out:comp_destructor]	
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ gcc destructor.c -o destructor -g
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ ./destructor 
+Primero se ejecuta el main.
+Despues, salta a 0x8048426
+Y se ejecuta destructor.
+\end{listing}
+
+Como se puede ver, el orden de ejecución es claro. Primero se ejecuta la función \textit{main} y después se ejecuta el destructor. \\
+Por otro lado, con la línea 8 del Código \ref{code:destructor} se obtiene que el código ejecutable de la función \textit{destructor} está ubicado a partir de la dirección 0x8048426. Aquí es donde entra la sección .dtors del ejecutable. Si todo es correcto, en dicha sección debe aparecer la dirección de memoria donde se almacena el código del destructor: \bigskip
+
+\pagebreak
+
+\begin{listing}[style=consola, caption=Objdump .dtors section, label=out:objdump_dtors]	
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ objdump -s -j .dtors ./destructor
+
+./destructor:     file format elf32-i386
+
+Contents of section .dtors:
+ 8049f18 ffffffff 26840408 00000000           ....&.......    
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ 
+\end{listing}
+
+Con la herramienta \textit{objdump} se puede mostrar información sobre ejecutables. Específicamente, con la opción \textit{-j} se le dice a \textit{objdump} que muestre información sobre una sección en especial del ejecutable. En el caso mostrado, de la sección .dtors. El flag \textit{-s} especifica que se muestre todo el contenido de la sección especificada.\\
+La salida de \textit{objdump} se debe interpretar del siguiente modo. Una vez el binario \textit{destructor} se ejecute, su sección .dtors se almacenará en la dirección de memoria 0x8049f18. Los contenidos de dicha sección son esos tres conjuntos de 4 bytes: ffffffff 26840408 00000000. El primer conjunto de 4 bytes - ffffffff - indica el inicio de dicha sección, y el último conjunto de 4 bytes - 00000000 - indica el fin de la sección. Por último, el conjunto de 4 bytes, 26840408, representa la dirección en \textit{little endian} donde se almacena el código ejecutable del destructor. Tal y como se ha mostrado al ejecutar el código, la dirección es 0x08048426. Destacar que si el código fuente no hubiera tenido ningún destructor, la sección .dtors seguiría existiendo, sin embargo, sólo tendría los primeros 4 bytes a 1 y los últimos 4 bytes a 0, indicando el principio y el final de la sección. \bigskip
+
+Se hace evidente que si se pudiera sobrescribir el valor donde se encuentra la dirección del destructor, se podría llegar a ejecutar cualquier código almacenado en memoria. El Código \ref{code:first_ov_dtors} está programado a tal efecto.\bigskip
+
+\lstset{language=C, caption=Intento para sobrescribir la sección .dtors , label=code:first_ov_dtors}
+\begin{lstlisting}
+#include <stdio.h>
+
+void destructor(void) __attribute__ ((destructor));
+void hijack(void);
+
+int main(void) {
+
+        printf("Primero se ejecuta el main.\n");
+        printf("Despues, salta a 0x%x\n", (unsigned int) &destructor);
+        unsigned int * dtr_section = (unsigned int *)0x8049f18 + 0x4;
+        *dtr_section = (unsigned int) &hijack;
+        return 0;
+}
+
+void destructor(void) {
+        printf("Y se ejecuta destructor.\n");
+}
+
+void hijack(void) {
+        printf("Hijack\n");
+}
+\end{lstlisting}
+
+Como se puede ver, en la línea 10 se crea un puntero que apunta a la dirección de memoria 0x8049f1c. Dicha dirección es donde empieza la sección .dtors (0x8049f18) más 4 bytes. Justo donde se ubica el conjunto de 8 bytes 26840408, después de ffffffff. A continuación, con la línea 11, se sobrescribe el valor 26840408, ubicado en la dirección 0x8049f1c que es donde apunta la variable |dtr_section|, por la dirección de memoria donde se ubica la función |hijack|. Si se ejecutará este código, deberían aparecer los dos |printf|s del main y acto seguido el |printf| de la función |hijack|. A continuación se muestra lo que ocurre: \bigskip
+
+\begin{listing}[style=consola, caption=Ejecución del Código \ref{code:first_ov_dtors}, label=out:comp_try1_destructor]	
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ gcc destructor.c -o destructor -g
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ ./destructor 
+Primero se ejecuta el main.
+Despues, salta a 0x8048439
+Violación de segmento
+\end{listing}
+
+A diferencia de lo que se creía, la ejecución del Código \ref{code:first_ov_dtors} no ha sido satisfactoria. Sólo se han ejecutado los dos primeros |printf|s. Para entender lo que ocurre primero se debería depurar el código con \textit{gdb}.
+
+\begin{listing}[style=consola, caption=Depuración del Código \ref{code:first_ov_dtors}, label=out:debug_try1_destructor]	
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ gdb -q destructor
+Leyendo símbolos desde /home/newlog/Documents/TFM/Heap/heap_exploiting/codes/destructor...hecho.
+(gdb) b main
+Punto de interrupción 1 at 0x80483fd: file destructor.c, line 8.
+(gdb) r
+Starting program: /home/newlog/Documents/TFM/Heap/heap_exploiting/codes/destructor 
+
+Breakpoint 1, main () at destructor.c:8
+8		printf("Primero se ejecuta el main.\n");
+(gdb) n
+Primero se ejecuta el main.
+9		printf("Despues, salta a 0x%x\n", (unsigned int) &destructor);
+(gdb) 
+Despues, salta a 0x8048439
+10		unsigned int * dtr_section = (unsigned int *)(0x8049f18 + 0x4);
+(gdb) 
+11		*dtr_section = (unsigned int) &hijack;
+(gdb) x dtr_section
+0x8049f1c <__DTOR_LIST__+4>:	0x08048439
+(gdb) x/3x 0x8049f18
+0x8049f18 <__DTOR_LIST__>:	0xffffffff	0x08048439	0x00000000
+(gdb) next
+
+Program received signal SIGSEGV, Segmentation fault.
+0x08048430 in main () at destructor.c:11
+11		*dtr_section = (unsigned int) &hijack;
+(gdb) x/3x 0x8049f18
+0x8049f18 <__DTOR_LIST__>:	0xffffffff	0x08048439	0x00000000
+(gdb) quit
+Una sesión de depuración está activa.
+
+	Inferior 1 [process 32367] will be killed.
+
+¿Salir de cualquier modo? (y o n) y
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ 
+\end{listing}
+
+Tal y como se puede apreciar, \textit{gdb} muestra que el ejecutable termina inesperadamente cuando se realiza la asignación de la línea 11 del Código \ref{code:first_ov_dtors}. También se puede apreciar que la variable |dtr_section| apunta a la dirección 0x8049f1c que es donde se encuentra la dirección de la función |destructor|. Hasta aquí todo es correcto, sin embargo, al realizar la escritura en memoria a través del puntero |dtr_section|, el programa recibe un |SIGSEGV| y como se puede ver en la siguiente línea, la dirección de memoria 0x8049f1c sigue conteniendo el valor 0x08048439, que es la dirección a la función |destructor|. Esto demuestra que la escritura no se ha realizado. \\
+De estos datos se puede deducir que la página de memoria donde se ubica la sección .dtors no tiene permisos de escritura. \bigskip
+
+Sin embargo, la herramiento \textit{readelf} muestra lo contrario: \bigskip
+
+\begin{listing}[style=consola, caption=readelf del destructor, label=out:readelf]	
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ readelf -S ./destructor | grep dtors
+  [18] .dtors            PROGBITS        08049f18 000f18 00000c 00  WA  0   0  4
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ 
+\end{listing}
+
+La herramienta \textit{readelf} muestra que la sección .dtors empieza en la dirección 0x08049f18 y tiene un tamaño de 0xc bytes. Todo cuadra hasta el momento, la dirección de la sección es correcta y ocupa 12 bytes que son los tres conjuntos de 4 bytes de los que se hablaba anteriormente. Sin embargo, con las letras WA, \textit{readelf} declara que dicha página de memoria tiene, entre otros, permisos de escritura, cosa que contradice la hipótesis que se ha realizado anteriormente. \bigskip
+
+A la luz de estos datos, y partiendo de la base de que lo más plausible sigue siendo que la página de memoria no tenga los permisos de escritura, se realiza otra comprobación. Mientras el ejecutable se depura con \textit{gdb}, se obtendrá su identificador de proceso y se consultará su mapa de memoria. A continuación se muestra el proceso a seguir. Lo primero a realizar es depurar el ejecutable y mantenerse detenido en cualquier punto de ejecución mediante un \textit{breakpoint}:
+
+\pagebreak
+
+\begin{listing}[style=consola, caption=Depuración del Código \ref{code:first_ov_dtors}, label=out:debug1_try1_destructor]	
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ gdb -q destructor
+Leyendo símbolos desde /home/newlog/Documents/TFM/Heap/heap_exploiting/codes/destructor...hecho.
+(gdb) b main
+Punto de interrupción 1 at 0x80483fd: file destructor.c, line 8.
+(gdb) r
+Starting program: /home/newlog/Documents/TFM/Heap/heap_exploiting/codes/destructor 
+
+Breakpoint 1, main () at destructor.c:8
+8		printf("Primero se ejecuta el main.\n");
+(gdb) 
+\end{listing}
+
+A continuación se obtiene el PID del proceso y se consulta su mapa de memoria: \bigskip
+
+\begin{listing}[style=consola, caption=Mapa de memoria del ejecutable, label=out:mem_map_destructor]	
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ ps axu | grep destructor
+newlog   32457  0.1  0.7  14916  7304 pts/1    S+   07:21   0:00 gdb -q destructor
+newlog   32459  0.0  0.0   1684   244 pts/1    t    07:21   0:00 /home/newlog/Documents/TFM/Heap/heap_exploiting/codes/destructor
+newlog   32465  0.0  0.0   4056   772 pts/0    S+   07:22   0:00 grep --color=auto destructor 
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ cat /proc/32459/maps 
+00110000-0012c000 r-xp 00000000 08:01 655474     /lib/ld-2.12.1.so
+0012c000-0012d000 r--p 0001b000 08:01 655474     /lib/ld-2.12.1.so
+0012d000-0012e000 rw-p 0001c000 08:01 655474     /lib/ld-2.12.1.so
+0012e000-0012f000 r-xp 00000000 00:00 0          [vdso]
+0012f000-00286000 r-xp 00000000 08:01 655498     /lib/libc-2.12.1.so
+00286000-00287000 ---p 00157000 08:01 655498     /lib/libc-2.12.1.so
+00287000-00289000 r--p 00157000 08:01 655498     /lib/libc-2.12.1.so
+00289000-0028a000 rw-p 00159000 08:01 655498     /lib/libc-2.12.1.so
+0028a000-0028d000 rw-p 00000000 00:00 0 
+08048000-08049000 r-xp 00000000 08:01 919806     /home/newlog/Documents/TFM/Heap/heap_exploiting/codes/destructor
+08049000-0804a000 r--p 00000000 08:01 919806     /home/newlog/Documents/TFM/Heap/heap_exploiting/codes/destructor
+0804a000-0804b000 rw-p 00001000 08:01 919806     /home/newlog/Documents/TFM/Heap/heap_exploiting/codes/destructor
+b7ff0000-b7ff1000 rw-p 00000000 00:00 0 
+b7ffe000-b8000000 rw-p 00000000 00:00 0 
+bffdf000-c0000000 rw-p 00000000 00:00 0          [stack]
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ 
+\end{listing}
+
+Tal y como se puede ver a partir de la herramienta \textit{ps}, el PID del ejecutable \textit{destructor} es 32459. A continuación se consulta su mapa de memoria a partir del archivo \textit{maps} y, para sorpresa del lector, se podrá ver como el rango de direcciones de memoria de 08049000-0804a000, que es donde está ubicada la sección .dtors, tiene los permisos r--p, con lo que se demuestra, tal y como se había hipotetizado, que no se tienen permisos de escritura en dicha región de memoria. \bigskip
+
+El porqué de este comportamiento está detallado en la referencia bibliográfica \cite{RELRO}. Se debe a una medida de seguridad llamada RELRO, RELocation Read-Only.\bigskip
+
+La solución a este problema pasa por asignarle permisos de escritura a la página de memoria que contiene la sección .dtors. A tal efecto, el Código \ref{code:final_ov_dtors} bastará. \bigskip
+
+\lstset{language=C, caption=Sobrescribiendo la sección .dtors , label=code:final_ov_dtors}
+\begin{lstlisting}
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/mman.h>
+
+void destructor(void) __attribute__ ((destructor));
+void hijack(void);
+
+int main(void) {
+
+        printf("Primero se ejecuta el main.\n");
+        printf("Despues, salta a 0x%x\n", (unsigned int) &destructor);
+
+        /* Obteniendo el tamano de pagina de memoria del sistema */
+        int pagesize = sysconf(_SC_PAGE_SIZE);
+        if ( pagesize == -1) {
+                perror("[-] Page size could not be obtained");
+                exit(EXIT_FAILURE);
+        }
+
+        /* Poniendo permisos de escritura en la seccion .dtors */
+        mprotect((void*)0x8049000, pagesize, PROT_WRITE);
+        unsigned int * dtr_section = (unsigned int *)(0x8049f18 + 0x4);
+        *dtr_section = (unsigned int) &hijack;
+        return 0;
+}
+
+void destructor(void) {
+        printf("Y se ejecuta destructor.\n");
+}
+
+void hijack(void) {
+        printf("Hijack\n");
+}
+\end{lstlisting}
+
+Con la línea 15 se obtiene el tamaño de las páginas de memoria del sistema. Normalmente este valor será 4096. A continuación, en la línea 22, de la dirección de memoria 0x8049000 hasta la dirección 0x8049000 más el tamaño de página se les pone el permiso de escritura. Si se ejecuta dicho código se obtiene lo siguiente: \bigskip
+
+\pagebreak
+
+\begin{listing}[style=consola, caption=Sobrescritura realizada, label=out:destructor_ov_succeed]
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ gcc destructor.c -o destructor -g
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ ./destructor 
+Primero se ejecuta el main.
+Despues, salta a 0x8048544
+Hijack	
+\end{listing}
+
+Como se puede ver, la última línea en escribirse es ''Hijack'' que es el código de la función |hijack()|, código con el cual se ha sustituido el código de la función |destructor| a partir de modificar la sección .dtors. \bigskip
+
+Como nota final, cabe destacar otra particularidad en cuanto a la sobrescritura de la sección .dtors. Desde que esta técnica fue publicada \cite{OEDSTMPE}, no sólo se ha creado la técnica RELRO para intentar sufragar dicha vulnerabilidad, sino que también se ha creado otra estrategia para evitar que se ejecute un destructor si este no se ha declarado en el momento de compilación. \\
+Antiguamente, era posible ejecutar un destructor aun cuando este no había sido declarado en el código fuente. La técnica se basaba en sobrescribir los bytes finales - 00000000 - de la sección .dtors, a diferencia de lo que se ha realizado anteriormente, dónde se ha sobrescrito la dirección del destructor y no el final de la sección. La sobrescritura del final de la sección .dtors engañaba al sistema y aunque la sección .dtors no tuviera el formato adecuado - empezando con cuatro bytes a 1 y acabando con cuatro bytes a 0 - el código ubicado en la dirección con la que se acababan de sobrescribir los últimos cuatro bytes a 0 se ejecutaba sin ningún problema. \bigskip
+
+En cambio, actualmente si se intenta sobrescribir la sección .dtors de un código que no tenga declarado un destructor, la ejecución del código destructor fraudulento será inviable. En el Código \ref{code:ov_dtors_without_dtor} se muestra un código sin un destructor declarado, y en el Código \ref{out:destructor_ov_fail} se muestra como, a diferencia de lo que se ha mostrado anteriormente, esta vez no se ejecuta el código de la función |hijack()|. \bigskip
+
+\lstset{language=C, caption=Sobrescribiendo la sección .dtors sin un destructor declarado , label=code:ov_dtors_without_dtor}
+\begin{lstlisting}
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/mman.h>
+
+void hijack(void);
+
+int main(void) {
+
+        printf("Primero se ejecuta el main.\n");
+
+        /* Obteniendo el tamano de pagina de memoria del sistema */
+        int pagesize = sysconf(_SC_PAGE_SIZE);
+        if ( pagesize == -1) {
+                perror("[-] Page size could not be obtained");
+                exit(EXIT_FAILURE);
+        }
+
+        /* Poniendo permisos de escritura en la seccion .dtors */
+        mprotect((void*)0x8049000, pagesize, PROT_WRITE);
+        unsigned int * dtr_section = (unsigned int *)(0x8049f18 + 0x4);
+        *dtr_section = (unsigned int) &hijack;
+        return 0;
+}
+
+void hijack(void) {
+        printf("Hijack\n");
+}
+\end{lstlisting}
+
+\begin{listing}[style=consola, caption=Sobrescritura no realizada, label=out:destructor_ov_fail]
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ gcc sin_destructor.c -o sin_destructor -g
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ ./sin_destructor 
+Primero se ejecuta el main.
+\end{listing}
+
+Como se puede ver, la línea ''Hijack'' ya no se muestra por pantalla, lo que significa que la sección .dtors no se ha sobrescrito.\\
+Esto se debe a que en algún momento de su historia, el compilador \textit{gcc} añadió una directiva nueva en la función que se encargaba de ejecutar los destructores. El Código \ref{out:objdump_dtor_aux} muestra las instrucciones de dicha función.\bigskip
+
+\begin{listing}[style=consola, caption=Desensamblado de \_\_do\_global\_dtors\_aux, label=out:objdump_dtor_aux]
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ objdump -M intel -d --start-address=0x08048400 --stop-address=0x8048459  sin_destructor
+
+sin_destructor:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08048400 <__do_global_dtors_aux>:
+ 8048400:	55                   	push   ebp
+ 8048401:	89 e5                	mov    ebp,esp
+ 8048403:	53                   	push   ebx
+ 8048404:	83 ec 04             	sub    esp,0x4
+ 8048407:	80 3d 24 a0 04 08 00 	cmp    BYTE PTR ds:0x804a024,0x0
+ 804840e:	75 3f                	jne    804844f <__do_global_dtors_aux+0x4f>
+ 8048410:	a1 28 a0 04 08       	mov    eax,ds:0x804a028
+ 8048415:	bb 20 9f 04 08       	mov    ebx,0x8049f20
+ 804841a:	81 eb 1c 9f 04 08    	sub    ebx,0x8049f1c
+ 8048420:	c1 fb 02             	sar    ebx,0x2
+ 8048423:	83 eb 01             	sub    ebx,0x1
+ 8048426:	39 d8                	cmp    eax,ebx
+ 8048428:	73 1e                	jae    8048448 <__do_global_dtors_aux+0x48>
+ 804842a:	8d b6 00 00 00 00    	lea    esi,[esi+0x0]
+ 8048430:	83 c0 01             	add    eax,0x1
+ 8048433:	a3 28 a0 04 08       	mov    ds:0x804a028,eax
+ 8048438:	ff 14 85 1c 9f 04 08 	call   DWORD PTR [eax*4+0x8049f1c]
+ 804843f:	a1 28 a0 04 08       	mov    eax,ds:0x804a028
+ 8048444:	39 d8                	cmp    eax,ebx
+ 8048446:	72 e8                	jb     8048430 <__do_global_dtors_aux+0x30>
+ 8048448:	c6 05 24 a0 04 08 01 	mov    BYTE PTR ds:0x804a024,0x1
+ 804844f:	83 c4 04             	add    esp,0x4
+ 8048452:	5b                   	pop    ebx
+ 8048453:	5d                   	pop    ebp
+ 8048454:	c3                   	ret    
+ 8048455:	8d 74 26 00          	lea    esi,[esi+eiz*1+0x0]
+newlog@ubuntu:~/Documents/TFM/Heap/heap_exploiting/codes$ 
+\end{listing}
+
+Las instrucciones relevantes son las siguientes: \bigskip
+
+\lstset{language=C, caption=Instrucciones relevantes en \_\_do\_global\_dtors\_aux , label=code:dtor_aux_rel}
+\begin{lstlisting}
+ 8048410:	a1 28 a0 04 08       	mov    eax,ds:0x804a028
+ 8048415:	bb 20 9f 04 08       	mov    ebx,0x8049f20
+ 804841a:	81 eb 1c 9f 04 08    	sub    ebx,0x8049f1c
+ 8048420:	c1 fb 02             	sar    ebx,0x2
+ 8048423:	83 eb 01             	sub    ebx,0x1
+ 8048426:	39 d8                	cmp    eax,ebx
+ 8048428:	73 1e                	jae    8048448 <__do_global_dtors_aux+0x48>
+\end{lstlisting}
+
+Debido al código anterior y al flujo de ejecución, la primera línea del Código \ref{code:dtor_aux_rel} hace que en el registro \textit{eax} se almacene un 0. En la línea 2, en \textit{ebx} se almacena la dirección final de la sección .dtors con lo que gracias a la resta de 0x8049f1c en la línea 4, que es el inicio de la sección .dtors se obtiene el tamaño de dicha sección. Destacar que el tamaño de la sección .dtors sin almacenar ningún destructor es de 4 bytes, debido al formato comentado anteriormente.\\
+En la línea 5, el contenido de \textit{ebx}, que es el tamaño de la sección .dtors + 4, se divide entre 4. Debido a que en una arquitectura de 32 bits los punteros a funciones ocupan 4 bytes, con esta división se obtendrá el número de punteros a función que existen en la sección .dtors más uno, o sea, el número de destructores más uno. \\
+A continuación, para obtener el número real de destructores, se le resta 1 al registro \textit{ebx}.\\
+Con la línea 6, se compara el resultado de \textit{ebx} con \textit{eax}, si son iguales, o sea, si su contenido es 0, se salta al final de la función |__do_global_dtors_aux|, con lo que ningún destructor es ejecutado. \bigskip
+
+De este modo se evita la ejecución de destructores si no están declarados en el código fuente. \bigskip
+
+\vspace*{2em}
+
+Debido a todas estas medidas de seguridad aplicadas con el paso de los años, los artículos que tratan la sobrescritura de la sección .dtors, siempre y cuando no tengan en cuenta estos detalles, han quedado totalmente obsoletos.

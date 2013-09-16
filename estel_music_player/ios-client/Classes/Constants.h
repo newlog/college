@@ -1,0 +1,104 @@
+//
+//  Constants.h
+//  Estel
+//
+//  Created by Beleriand on 14/03/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+			// TAB NAMES
+#define INITTAB					""
+#define MUSICTAB				"Estel Main Window"
+#define CONFTAB					"Shared Music"
+
+			// TAB TITLES
+#define MUSICTABTITLE			"Estel Music Streaming"
+#define CONFTABTITLE			"Shared Music"
+
+			//BUTTONS TEXT
+#define MENU_CONNECT_BUTTON		"Connect"
+#define MENU_DISCONNECT_BUTTON	"Disconnect"
+#define MENU_SETTINGS_BUTTON	"Settings"
+#define MENU_EXIT_BUTTON		"Exit"
+#define MENU_SAVE_BUTTON		"Save"
+
+			//TEXTFIELD TEXT
+#define SETTINGS_IP_TEXTFIELD	"255.255.255.255"
+#define SETTINGS_PORT_TEXTFIELD	"1337"
+
+			//LABEL TEXT
+#define SETTINGS_IP_LABEL		"IP Address:"
+#define SETTINGS_PORT_LABEL		"Port:"
+#define SETTINGS_RANDOM_LABEL	"Play music randomly:"
+
+
+			// POSITIONS
+#define GAME_BUTTON_HEIGHT		100.0
+#define GAME_BUTTON_WIDTH		105.0
+
+#define NORMAL_BUTTON_HEIGHT	45.0
+#define NORMAL_BUTTON_WIDTH		150.0
+#define SONG_CONTROL_BTN_HEIGHT	55.0
+#define SONG_CONTROL_BTN_WIDTH	55.0
+#define NORMAL_TEXTFIELD_HEIGHT	23.0
+#define NORMAL_TEXTFIELD_WIDTH	135.0
+#define NORMAL_LABEL_HEIGHT		45.0
+#define NORMAL_LABEL_WIDTH		180.0
+#define NORMAL_SWITCH_HEIGHT	80.0
+#define NORMAL_SWITCH_WIDTH		120.0
+
+#define SCREEN_WIDTH			320.0
+#define SCREEN_HEIGTH			480.0
+
+#define TOP_OFFSET				120.0
+#define CENTER_POS_X			(SCREEN_WIDTH/2) - (NORMAL_BUTTON_WIDTH/2)
+#define CENTER_POS_Y			60.0
+#define CENTER_POS_X_SONG_BTN	(SCREEN_WIDTH/2) - (SONG_CONTROL_BTN_WIDTH/2)
+#define CENTER_POS_Y_SONG_BTN	60.0
+
+
+			// IMAGES
+#define MENU_BACKGROUND			"background.jpg"
+#define MENU_CONNECT_IMAGE		"green_circle.gif"
+#define MENU_DISCONNECT_IMAGE	"red_circle.gif"
+
+
+		// TAGS FOR NETWORK COMMUNICATION
+#define TAG_NO_TAG					0
+#define TAG_INIT_FILES				1
+#define TAG_INIT_FILES_RECV			2
+#define TAG_NUMBER_OF_SONGS			3
+#define TAG_NUMBER_OF_SONGS_RECV	4
+#define TAG_END_FILES				5
+#define TAG_END_FILES_RECV			6
+#define TAG_END_COMMUNICATION		7
+#define TAG_SENDING_SONG			8
+#define TAG_SENDING_SONG_RECV		9
+#define TAG_SONGS_LIST				10
+#define TAG_SONGS_LIST_LENGTH		11
+#define TAG_SONGS_LIST_LENGTH_RECV	12
+#define TAG_SONG_PETITION			13
+#define TAG_SONG_LENGTH				14
+#define TAG_SONG_BINARY				15
+
+		// PROTOCOL
+#define INIT_FILES						@"INIT-PLAYLIST"
+#define INIT_FILES_CONTROL_TAG			@"INIT-PLAYLIST-RECV"
+#define NUMBER_OF_SONGS_CONTROL_TAG		@"NUM-SONGS-RECV"
+#define END_FILES						@"END-PLAYLIST"
+#define END_FILES_CONTROL_TAG			@"END-PLAYLIST-RECV"
+#define SONGS_SEPARATOR					@"/"
+#define END_COMMUNICATION				@"END-COMMUNICATION"
+#define SENDING_SONG					@"SENDING-SONG"
+#define SENDING_SONG_CONTROL_TAG		@"SENDING-SONG-RECV"
+#define SONG_TITLES_LENGTH_CONTROL_TAG	@"SONG-TITLES-LENGTH-RECV"
+
+#define NO_TIMEOUT					-1
+
+@interface Constants {
+
+}
+
+@end

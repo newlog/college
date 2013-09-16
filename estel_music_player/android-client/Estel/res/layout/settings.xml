@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+ <PreferenceCategory 
+ 					android:title="@string/main_activity_name"
+					android:summary="@string/main_activity_name">
+  
+	<EditTextPreference
+		android:key="ip_preference"
+		android:title="@string/IP_Address_option"
+		android:summary="@string/IP_Address_explanation"
+		android:dialogTitle="@string/IP_Address_option" />
+		
+	<EditTextPreference
+		android:key="port_preference"
+		android:title="@string/Port_option"
+		android:summary="@string/Port_explanation"
+		android:dialogTitle="@string/Port_option" />
+                
+	<CheckBoxPreference
+			android:key="random_music"
+ 			android:title="Random music:"
+ 			android:summary="Do your want to play random songs?" />
+               
+ </PreferenceCategory>
+
+</PreferenceScreen>

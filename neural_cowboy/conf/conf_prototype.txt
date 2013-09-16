@@ -1,0 +1,12 @@
+learning-rate = float_value
+topology = 5,5,1
+learning-type = unsupervised | supervised
+phase = train | test
+algorithm = backpropagation | hebbian
+iterations = integer
+dataset = file_path
+weights = file_path
+graphics = on | off
+sigmoid = none | output | hidden | all
+momentum = 0.9
+

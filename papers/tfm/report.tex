@@ -1,0 +1,266 @@
+\documentclass[titlepage,12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{geometry}
+\usepackage[english,spanish]{babel}
+\usepackage{fancyvrb}
+\usepackage{tocbibind} 
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{varwidth}		  %% Sirve para centrar el verbatim. Exactamente en el hacker manifesto.
+\usepackage[bottom]{footmisc} %% Sirve para que los footnote se pongan siempre al final de la pagina
+\usepackage{hyperref}
+\usepackage{graphicx}	%% Librería necesaria para insertar gráficos
+\usepackage{caption}	%% Librería necesaria para personalizar el título de las figuras y otras cosas
+\usepackage{fancybox}	%% Librería necesaria para la sombra de las figuras
+\usepackage{appendix}	%% Librería necesaria para generar apéndices bonitos
+\usepackage{listings}	%% Librería necesaria para generar codigo bonito 
+\usepackage{color}
+\usepackage{courier}	%% Librería necesaria para generar codigo bonito 
+\usepackage{comment}	%% Librería necesaria para añadir comentarios Latex1
+\usepackage{csquotes} 	%% Something needed to improve biblatex
+\usepackage{multicol}   %% To convert the bibliography into a two column text
+\usepackage{etoolbox}   %% Para desactivar los errores \hbox en la bibliografía
+\usepackage[natbib=true, defernums=true]{biblatex}   	%% Librería necesaria para crear la bibliografía
+\bibliography{./Chapters/Bibliografia/Biblio}			%% Archivo donde se almacena el archivo de bibliografía
+
+
+%% Se cargan los diferentes lenguajes especificados abajo
+\lstloadlanguages{C}
+\lstloadlanguages{bash}
+
+%% Definición de las diferentes tonalidades de gris
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray82}{gray}{.82}
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray45}{gray}{.45}
+
+%% Comandos necesarios para mostrar las figuras mejoradas
+\DeclareCaptionLabelSeparator{flecha}{\ensuremath{ .}\quad}
+\captionsetup{labelsep=flecha, justification=centering}
+
+%% Para que los apéndices se titulen como Apéndices y no Appendices
+\renewcommand{\appendixname}{Apéndices} 
+
+%% Crea el entorno myindentpar \begin{myindentpar}[1cm]. Tabula el parágrafo x cm.
+\newenvironment{myindentpar}[1]
+{\begin{list}{}
+	{\setlength{\leftmargin}{#1}}
+  	\item[]
+}
+{\end{list}}
+
+%% To use | code | for inline code
+\DefineShortVerb{\|} 
+
+%% Parametros para definir el codigo fuente
+\lstset{ 
+	language=C,                			% choose the language of the code
+	%basicstyle=\small,
+	basicstyle=\footnotesize\ttfamily,
+	%basicstyle=\footnotesize,       	% the size of the fonts that are used for the code
+	numbers=left,                   	% where to put the line-numbers
+	numberstyle=\tiny,      			% the size of the fonts that are used for the line-numbers
+	stepnumber=1,                   	% the step between two line-numbers. If it's 1 each line 
+    		                           	% will be numbered
+	numbersep=7pt,                  	% how far the line-numbers are from the code
+	backgroundcolor=\color{gray82},  	% choose the background color. You must add \usepackage{color}
+	showspaces=false,               	% show spaces adding particular underscores
+	showstringspaces=false,         	% underline spaces within strings
+	showtabs=false,                 	% show tabs within strings adding particular underscores
+	frame=single,	                	% adds a frame around the code
+	tabsize=2,	                		% sets default tabsize to 2 spaces
+	captionpos=b,                   	% sets the caption-position to bottom
+	breaklines=true,                	% sets automatic line breaking
+	breakatwhitespace=false,        	% sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 	% show the filename of files included with \lstinputlisting;
+                                		% also try caption instead of title
+	extendedchars=true,
+	escapeinside={\%*}{*)},         	% if you want to add a comment within your code
+	morekeywords={*,...}            	% if you want to add more keywords to the set,
+}
+
+\lstdefinestyle{consola} {
+	basicstyle=\scriptsize\bf\ttfamily,
+	backgroundcolor=\color{gray75},
+	numbers=none
+}
+
+%% Cambia el caption de los lstlisting a Código
+\renewcommand{\lstlistingname}{Código}
+%% Los items de primer nivel tienen un bullet redondo en vez de cuadrado (por defecto)
+\renewcommand{\labelitemi}{$\bullet$}
+
+%% Minimiza el fragmentado de listados
+\lstnewenvironment{listing}[1][]
+   {\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+
+\begin{comment}
+
+\lstset{ 
+	language=[x86masm]Assembler,    % choose the language of the code
+	basicstyle=\footnotesize\ttfamily,
+	numbers=left,                   % where to put the line-numbers1
+	numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1 each line 
+	                                % will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{gray75}, % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,	                % adds a frame around the code
+	tabsize=2,		                % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 % show the filename of files included with \lstinputlisting;
+    	                            % also try caption instead of title
+	escapeinside={\%*}{*)},         % if you want to add a comment within your code
+	morekeywords={*,...}            % if you want to add more keywords to the set
+}
+\lstset{
+	 language=bash, 
+	 frame=Ltb,
+     framerule=0pt,
+     aboveskip=0.5cm,
+     framextopmargin=3pt,
+     framexbottommargin=3pt,
+     framexleftmargin=0.4cm,
+     framesep=0pt,
+     rulesep=.4pt,
+     backgroundcolor=\color{gray97},
+     rulesepcolor=\color{black},
+     %
+	 basicstyle=\footnotesize\ttfamily,
+     showstringspaces = false,
+     basicstyle=\small\ttfamily,
+     commentstyle=\color{gray45},
+     keywordstyle=\bfseries,
+     %
+     numbers=left,
+     numbersep=15pt,
+     numberstyle=\tiny,
+     numberfirstline = false,
+     breaklines=true,
+}
+
+\end{comment}
+
+\title {Estudio y explotación del sistema de gestión de memoria dinámica en sistemas GNU/Linux}
+\author {por Albert López Fernández \\ \url{newlog [at] overflowedminds [dot] net}}
+\date {27 de Septiembre de 2012}
+\addtolength{\textheight}{2cm}
+
+\begin{document}
+
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\refname}{Bibliografía}
+\renewcommand{\abstractname}{Abstract}
+
+\maketitle
+\newpage
+
+\input{./Chapters/Abstract/Abstract.tex}
+
+\pagebreak
+
+\input{./Chapters/Resumen/Resumen.tex}
+
+\pagebreak
+
+\setcounter{page}{1}
+
+\tableofcontents
+
+\newpage
+
+\listoftables 
+
+\listoffigures
+
+\pagebreak
+
+\input{./Chapters/Introduccion/Introduccion.tex}
+
+\pagebreak
+
+\input{./Chapters/RelatedWork/RelatedWork.tex}
+
+\pagebreak
+
+%\section{Explotación del heap}
+
+\input{./Chapters/Introduccion/Objetivos/Objetivos.tex}
+
+\pagebreak
+
+\input{./Chapters/Introduccion/EstadoDelArte/EstadoDelArte.tex}
+
+\pagebreak
+
+\input{./Chapters/Introduccion/AboutHeap/sobre_el_heap.tex}
+
+\pagebreak
+
+\input{./Chapters/Introduccion/ConceptosBasicos/ConceptosBasicos.tex}
+
+\pagebreak
+
+\input{./Chapters/HeapExploiting/HeapTheory/Estructuras/EstructurasDeDatos.tex}
+
+\pagebreak
+
+\input{./Chapters/HeapExploiting/Unlink/ExploitingPtmallocAlgorithm.tex}
+
+\pagebreak
+
+\input{./Chapters/HeapExploiting/glibc/glibc_exploiting.tex}
+
+\pagebreak
+
+\input{./Chapters/Reflexiones/reflexiones.tex}
+
+\pagebreak
+
+\input{./Chapters/Futuro/futuro.tex}
+
+\pagebreak
+
+\input{./Chapters/Conclusiones/conclusiones.tex}
+
+\pagebreak
+
+\input{./Chapters/CosteTemporal/coste_temporal.tex}
+
+\pagebreak
+
+\section{Bibliografía}
+\renewcommand{\bibfont}{\small}
+\apptocmd{\sloppy}{\hbadness 10000\relax}{}{} %% Deactivate \hbox errors on blibliography.
+\begin{multicols}{2}
+%% Nota para diferenciar la bibliografía online
+\defbibnote{websites}{Nota: Los recursos aquí citados no tienen por qué haber pasado un proceso de revisión. Sin embargo, eso no significa que la calidad o veracidad de sus contenidos sea inferior a otros recursos.}
+\printbibliography[type=book, title={Libros}]
+\printbibliography[type=article, title={Artículos}]
+\printbibliography[type=online, title={Páginas Web}, prenote=websites]
+\end{multicols}
+
+\pagebreak
+
+\appendix
+
+\input{./Chapters/Apendices/Apendice_1/LoadExternalMalloc.tex}
+
+\pagebreak
+
+\input{./Chapters/Apendices/Apendice_2/overwriting_dtors.tex}
+
+\pagebreak
+
+\input{./Chapters/Agradecimientos/agradecimientos.tex}
+
+\pagebreak
+
+\input{./Chapters/HackerManifesto/hacker_manifesto.tex}
+
+\end{document}

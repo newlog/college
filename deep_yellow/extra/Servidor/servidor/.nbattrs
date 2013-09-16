@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="server.java">
+        <attr name="NetBeansAttrArguments" serialvalue="aced0005757200135b4c6a6176612e6c616e672e537472696e673badd256e7e91d7b47020000787000000007740002703174000437303130740004373031317400043730313274000231377400043132303074000437303031"/>
+        <attr name="class_dependency_java.lang.Thread" stringvalue="server"/>
+    </fileobject>
+    <fileobject name="server_thread_player.java">
+        <attr name="class_dependency_java.lang.Thread" stringvalue="server_thread_player"/>
+    </fileobject>
+</attributes>

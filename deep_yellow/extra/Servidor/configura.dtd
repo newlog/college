@@ -1,0 +1,29 @@
+<!ELEMENT Server (Configuracio,Jugadors)>
+<!ELEMENT Configuracio (Port,Maxim,Ports,Usuaris)>
+<!ELEMENT Port EMPTY>
+<!ATTLIST Port Base CDATA #REQUIRED>
+<!ELEMENT Maxim EMPTY>
+<!ATTLIST Maxim Partides CDATA #REQUIRED>
+<!ELEMENT Ports EMPTY>
+<!ATTLIST Ports Partida CDATA #REQUIRED>
+<!ATTLIST Ports Chat CDATA #REQUIRED>
+<!ELEMENT Usuaris EMPTY>
+<!ATTLIST Usuaris Registrats CDATA #REQUIRED>
+<!ELEMENT Jugadors (Jugador*)>
+<!ELEMENT Jugador (Nom,Cognom,Login,Password,Mail,Punts,Partides,Connexio)>
+<!ELEMENT Nom (#PCDATA) >
+<!ELEMENT Cognom (#PCDATA)>
+<!ELEMENT Login (#PCDATA)>
+<!ELEMENT Password (#PCDATA)>
+<!ELEMENT Mail (#PCDATA)>
+<!ELEMENT Punts (#PCDATA)>
+<!ELEMENT Partides (Guanyades,Perdudes,Abandonades,Taules)>
+<!ELEMENT Guanyades (#PCDATA)>
+<!ELEMENT Perdudes (#PCDATA)>
+<!ELEMENT Abandonades (#PCDATA)>
+<!ELEMENT Taules (#PCDATA)>
+<!ELEMENT Connexio (Intents,Ultima)>
+<!ELEMENT Intents EMPTY>
+<!ATTLIST Intents Restants CDATA #REQUIRED>
+<!ELEMENT Ultima EMPTY>
+<!ATTLIST Ultima Data CDATA #REQUIRED>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Activities  -->
+    <string name="app_name">Estel</string>
+    <string name="music_activity_name">Shared Music</string>
+    <string name="main_activity_name">Estel Music Streaming</string>
+    <string name="settings_activity_name">Settings</string>
+   
+   
+   <!-- Main view buttons -->
+    <string name="main_button1_name">Connect</string>
+    <string name="main_button2_name">Disconnect</string>
+    <string name="main_button4_name">Exit</string>
+    
+    
+    <!-- Settings menu dialog  -->
+    <string name="settings_button_caption">Settings</string>
+    <string name="howto_button_caption">How-To</string>
+    <string name="about_button_caption">About</string>
+    
+    <!-- Settings text -->
+    <string name="IP_Address_option">IP Address</string>
+    <string name="Port_option">Port</string>
+    <string name="Random_option">Play music randomly</string>
+    <string name="IP_Address_explanation">Set the IP address to connect</string>
+    <string name="Port_explanation">Set the port to connect</string>
+    
+</resources>

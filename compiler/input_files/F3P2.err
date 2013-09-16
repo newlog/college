@@ -1,0 +1,50 @@
+[ERR_SEM_38] 8, L’identificador [cte_s0] no ha estat declarat com a constant o variable
+[ERR_SEM_9] 8, El tipus de l’expressió no és SENCER
+[ERR_SEM_2] 8, Expressió no estàtica en declaració de constant
+[ERR_SEM_10] 11, El tipus de l’expressió no és LOGIC
+[ERR_SEM_9] 13, El tipus de l’expressió no és SENCER
+[ERR_SEM_1] 19, Constant [CTE_S2] doblement definida
+[ERR_SEM_7] 24, Límits decreixents en vector
+[ERR_SEM_38] 26, L’identificador [MIN11] no ha estat declarat com a constant o variable
+[ERR_SEM_6] 26, Tipus no sencers en límits de vector
+[ERR_SEM_9] 28, El tipus de l’expressió no és SENCER
+[ERR_SEM_6] 28, Tipus no sencers en límits de vector
+[ERR_SEM_31] 31, L’expressió en la longitud de la cadena no és estàtica
+[ERR_SEM_3] 32, Variable [k] doblement definida
+[ERR_SEM_3] 33, Variable [cte_s1] doblement definida
+[ERR_SEM_2] 36, Expressió no estàtica en declaració de constant
+[ERR_SEM_14] 40, L’identificador [CTE_S1] en la instrucció LLEGIR no és una variable
+[ERR_SEM_16] 41, L’identificador [CTE_S2] en part esquerra d’assignació no és una variable
+[ERR_SEM_17] 42, La variable [T] i l'expressió d'assignació tenen tipus diferents. El tipus de la variable és [VECTOR] i el de l’expressió és [SENCER]
+[ERR_SEM_47] 43, Tipus no aptes per l'operador relacional
+[ERR_SEM_47] 44, Tipus no aptes per l'operador relacional
+[ERR_SEM_3] 49, Variable [T] doblement definida
+[ERR_SEM_1] 56, Constant [x1] doblement definida
+[ERR_SEM_3] 57, Variable [x3] doblement definida
+[ERR_SEM_3] 59, Variable [i] doblement definida
+[ERR_SEM_4] 65, Funció doblement definida
+[ERR_SEM_44] 70, L'identificador de la Funció ja ha estat declarat prèviament per a una constant o variable
+[ERR_SEM_38] 87, L’identificador [f] no ha estat declarat com a constant o variable
+[ERR_SEM_9] 88, El tipus de l’expressió no és SENCER
+[ERR_SEM_24] 89, S'ha excedit el límit del vector [T] , índex fora de rang.
+[ERR_SEM_18] 90, El tipus de l’índex d’accés del vector no és SENCER
+[ERR_SEM_40] 91, La part dreta d’assignació no és de tipus cadena. No es pot concatenar
+[ERR_SEM_17] 92, La variable [n] i l'expressió d'assignació tenen tipus diferents. El tipus de la variable és [SENCER] i el de l’expressió és [LOGIC]
+[ERR_SEM_43] 93, La variable [C] de tipus [CADENA] i l'expressió d'assignació no són estructuralment equivalents. El tipus de la variable té longitud [10] mentre que el de l’expressió té longitud [12]
+[ERR_SEM_35] 94, No és possible fer una divisió entre 0
+[ERR_SEM_37] 95, L'identificador [k] no ha estat declarat com a VECTOR
+[ERR_SEM_37] 96, L'identificador [XX] no ha estat declarat com a VECTOR
+[ERR_SEM_36] 97, La funció [ff] no ha estat declarada
+[ERR_SEM_38] 101, L’identificador [ll] no ha estat declarat com a constant o variable
+[ERR_SEM_38] 101, L’identificador [ll] no ha estat declarat com a constant o variable
+[ERR_SEM_9] 101, El tipus de l’expressió no és SENCER
+[ERR_SEM_26] 108, SURTCICLE fora de CICLE
+[ERR_SEM_23] 113, La funció [F] ha de ser del tipus [SENCER] però en la expressió del seu valor el tipus és [LOGIC]
+[ERR_SEM_38] 118, L’identificador [mm] no ha estat declarat com a constant o variable
+[ERR_SEM_10] 118, El tipus de l’expressió no és LOGIC
+[ERR_SEM_20] 123, La funció en declaració té [2] paràmetres mentre que en ús té [1]
+[ERR_SEM_26] 124, SURTCICLE fora de CICLE
+[ERR_SEM_50] 125, RETORNAR fora de FUNCIO
+[ERR_SEM_53] 126, El tipus del paràmetre número [1] de la funció és tipus VECTOR però no és estructuralment equivalent al declarat
+[ERR_SEM_22] 127, El paràmetre número [2] de la funció no es pot passar per referència
+[ERR_SEM_21] 128, El tipus del paràmetre número [3] de la funció no coincideix amb el tipus en la seva declaració [LOGIC]

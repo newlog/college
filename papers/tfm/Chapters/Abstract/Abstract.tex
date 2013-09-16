@@ -1,0 +1,15 @@
+\begin{abstract}
+Uno de los problemas a los que se enfrentan los estudiosos de la gestión de memoria dinámica es la falta de documentación relativa al modo en que se gestiona la memoria dinámica en el sistema operativo GNU/Linux. La resolución de este problema es relevante ya que debería permitir asentar las bases para el descubrimiento de nuevas vulnerabilidades en el algoritmo encargado de realizar dicha gestión. \bigskip
+
+El objetivo de esta investigación es presentar un marco teórico sobre el cual fundamentar el estudio de las vulnerabilidades en el algoritmo \textit{ptmalloc2} tal y como está implementado en la \textit{glibc} 2.12.1 y así reducir las dificultades que presenta la falta de documentación que se ha mencionado. \\
+A tal efecto, la primera fase de esta investigación se basó en realizar un estudio teórico del funcionamiento del algoritmo \textit{ptmalloc2}. Posteriormente se realizó un estudio sobre las vulnerabilidades publicadas de dicho algoritmo, focalizándose en las vulnerabilidades más significativas del pasado hasta llegar al estado del arte, de modo que una vez realizado el estudio teórico de dichas vulnerabilidades se prosiguió con la comprobación empírica de la funcionalidad de las técnicas establecidas para la explotación de una de las vulnerabilidades más relevantes. \bigskip
+
+En el proceso de esta investigación se estableció cual era el estado del arte real en cuanto a las técnicas utilizadas para aprovecharse de las vulnerabilidades del algoritmo \textit{ptmalloc2}. También se presentó una modificación de una de las técnicas existentes en el pasado pero ahora obsoleta, con la cual es posible atacar el algoritmo \textit{ptmalloc2} de manera satisfactoria. \bigskip
+
+Los resultados obtenidos permiten dar un nuevo enfoque a las técnicas utilizadas para explotar las vulnerabilidades en la gestión de la memoria dinámica, presentando una modificación de una técnica utilizada en el pasado con el beneficio de tener menos requisitos que las técnicas utilizadas en la actualidad.
+
+\vspace{70pt}
+
+\textbf{Keywords:} \textit{dynamic allocation, heap overflow, heap exploitation, me\-mory corruption, ptmalloc, glibc, unlink, malloc maleficarum}
+
+\end{abstract}

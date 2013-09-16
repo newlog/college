@@ -1,0 +1,17 @@
+learning-rate = 0.01
+
+topology = 5,5,1
+
+learning-type = unsupervised
+
+phase =    training
+
+algorithm = backpropagation
+
+iterations = 10
+
+dataset=  ./dataset/lol.txt
+
+weights= ./weights/lol.txt
+
+

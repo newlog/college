@@ -1,0 +1,2 @@
+/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m:85: warning: incomplete implementation of class 'EstelViewController'
+/Users/newlog/Documents/LaSalle/Iphone/Estel/Classes/EstelViewController.m:85: warning: method definition for '-createNormalButton:atPosX:atPosY:withSizeY:withSizeX:withColor:withTag:withTitle:' not found

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1"
+    android:background="@drawable/background">
+
+    <TableRow android:stretchColumns="*">
+        <ImageView 
+   			android:id="@+id/green_circle"
+   			android:src="@drawable/green_circle"
+   			android:layout_marginTop="75dip"
+   			android:visibility="invisible" /> 
+        <Button 
+        	android:text="@string/main_button1_name" 
+        	android:id="@+id/ConnectButton"  
+        	android:layout_marginTop="70dip" />
+        
+        <TextView
+            android:text="                    "
+            android:layout_marginTop="70dip" />
+    </TableRow>
+    
+    <TableRow android:stretchColumns="*">
+       <ImageView 
+   			android:id="@+id/red_circle"
+   			android:src="@drawable/red_circle" 
+   			android:layout_marginTop="5dip"
+   			android:visibility="visible" /> 
+            
+        <Button 
+        	android:text="@string/main_button2_name" 
+        	android:id="@+id/DisconnectButton"  />
+        
+        <TextView
+            android:text="                    " />
+    </TableRow>
+    
+    <TableRow android:stretchColumns="*">
+       <TextView
+            android:text="                    " />
+            
+        <Button 
+        	android:text="@string/main_button4_name" 
+        	android:id="@+id/ExitButton"  />
+        
+        <TextView
+            android:text="                    " />
+    </TableRow>
+
+</TableLayout>
