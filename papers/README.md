@@ -14,9 +14,9 @@ ___
 
 Here follows a translation for the table of contents of each paper:
 
-Introduction to software exploiting in Linux systems
+Introduction to software exploitation in Linux systems
 -----------------------------------------------------
-
+```
 1. Introduction
 2. Shellcoding
 3. Basic concepts about shellcoding
@@ -48,11 +48,12 @@ Introduction to software exploiting in Linux systems
   9.3. Arbitrary code execution
     9.3.1. EIP register modification
     9.3.2. Building the exploit
-
+```
 
 Study and exploitation of the dynamic memory management in GNU/Linux systems
 ---------------------------------------------------------------------
 
+```
 1. Introduction
   1.1. Related work
   1.2. Objectives
@@ -79,3 +80,4 @@ Study and exploitation of the dynamic memory management in GNU/Linux systems
 5. Considerations
   5.1. About the Malloc Maleficarum
   5.2. About Unlink
+```
