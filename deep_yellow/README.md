@@ -22,15 +22,14 @@ This information can be found in the documentation file from the repository, but
 
 This performance measures were done even before the prune algorithm and the several heuristics were implemented so a better performance is expected.
 
- |     Device     | Search Depth |  Time  |
- | -------------- | ------------ | ------ |
- |   Macbook Pro  |       5      |  10''  |
- |   Macbook Pro  |       8      |    1'  |
- |   Macbook Pro  |       9      |   13'  |
- | -------------- | ------------ | ------ |
- | AlienWare M11x |       5      |    1'  |
- | AlienWare M11x |       8      |   10'  |
- | AlienWare M11x |       9      | 4'30'' |
+      Device     |  Search Depth  |  Time  
+ ---             |:--------------:|:-----:
+    Macbook Pro  |       5        |  10''
+    Macbook Pro  |       8        |    1'  
+    Macbook Pro  |       9        |   13'  
+  AlienWare M11x |       5        |    1'  
+  AlienWare M11x |       8        |   10'  
+  AlienWare M11x |       9        | 4'30'' 
 
 + Macbook Pro: Intel Core 2 Duo 2.4 GHz, RAM 4GB DDR3, x64
 + AlienWare M11x: Intel Core i7 CPU 1.20GHz, RAM 4GB DDR3, x64
