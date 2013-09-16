@@ -3,7 +3,7 @@ College Papers
 
 In this repository you can find different papers I've developed during my college years. They are the final research projects of each of my degrees. 
 
-The TFC project is the basic one and the TFM is somewhat more advanced. Both projects are related with software exploitation. The TFC is entitled `Introduction to software exploiting in Linux systems` and TFM `Study and exploitation of the dynamic memory management in GNU/Linux systems`.
+The TFC project is the basic one and the TFM is somewhat more advanced. Both projects are related with software exploitation. The TFC is entitled `Introduction to software exploitation in Linux systems` and TFM `Study and exploitation of the dynamic memory management in GNU/Linux systems`.
 
 Here you can also find the tex source code of each project so you can use them. I hope this can save you some time fighting against `LaTeX` ;)
 By the way, the second project - TFM - is more advanced or well organized regarding tex sources. So you better take the code from this one rather than the TFC.
